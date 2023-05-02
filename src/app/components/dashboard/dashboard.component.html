@@ -1,0 +1,48 @@
+<body class="inicio">
+<app-header></app-header>
+    <div class="m-5">
+        <div class="row align-items-center mb-2">
+            <div class="col">
+                <h1 class="text-white">Lista de vehiculos</h1>
+            </div>
+            <div class="col">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-4 " type="search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                  </form>
+            </div>
+        </div>
+        <table class="table" style="background: #EFEFEF;">
+            <thead class="bg-dark text-white">
+              <tr>
+                <th></th>
+                <th scope="col">PATENTE</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">MARCA</th>
+                <th scope="col">MODELO</th>
+                <th scope="col">MECANICO</th>
+                <th ></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                    <button class="btn btn-warning">mantencion</button>
+                </th>
+                <th scope="row">KKWW98</th>
+                <td><i class="fa-solid fa-truck"></i> Camion</td>
+                <td>Scania</td>
+                <td>G440</td>
+                <td>Juan Soto</td>
+                <td>
+                    <button class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-success me-2"><i class="fa-solid fa-eye"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn me-4" style="background: #F66B0E; color: #EFEFEF;" routerLink="/crear-vehiculo">Agregar vehiculo</button>
+          <button class="btn " style="background: #112B3C; color: #EFEFEF;">Agregar mecanico</button>
+    </div>
+</body>
