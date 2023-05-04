@@ -21,6 +21,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { CreateVehiculoComponent } from './components/create-vehiculo/create-vehiculo.component';
 import { CreateMantencionComponent } from './components/create-mantencion/create-mantencion.component';
 import { CreateMecanicoComponent } from './components/create-mecanico/create-mecanico.component';
+import { CreateTipoMantencionComponent } from './components/create-tipo-mantencion/create-tipo-mantencion.component';
+import { CreateTipoVehiculoComponent } from './components/create-tipo-vehiculo/create-tipo-vehiculo.component';
+import { CreateMarcaComponent } from './components/create-marca/create-marca.component';
+import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mantenciones.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { CreateMecanicoComponent } from './components/create-mecanico/create-mec
     HeaderComponent,
     CreateVehiculoComponent,
     CreateMantencionComponent,
-    CreateMecanicoComponent
+    CreateMecanicoComponent,
+    CreateTipoMantencionComponent,
+    CreateTipoVehiculoComponent,
+    CreateMarcaComponent,
+    VerMantencionesComponent
   ],
   imports: [
     BrowserModule,
