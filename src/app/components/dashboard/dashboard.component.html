@@ -27,7 +27,7 @@
             <tbody>
               <tr>
                 <th>
-                    <button class="btn btn-warning">mantencion</button>
+                    <button class="btn btn-warning" routerLink="/crear-mantencion">mantencion</button>
                 </th>
                 <th scope="row">KKWW98</th>
                 <td><i class="fa-solid fa-truck"></i> Camion</td>
@@ -37,12 +37,15 @@
                 <td>
                     <button class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                     <button class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-success me-2"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-success me-2" routerLink="/mantenciones"><i class="fa-solid fa-eye"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button class="btn me-4" style="background: #F66B0E; color: #EFEFEF;" routerLink="/crear-vehiculo">Agregar vehiculo</button>
-          <button class="btn " style="background: #112B3C; color: #EFEFEF;">Agregar mecanico</button>
+          <button class="btn btn-outline-light me-4" routerLink="/crear-vehiculo">Agregar un vehiculo</button>
+          <button class="btn btn-outline-light me-4"routerLink="/crear-marca">Agregar una marca de vehiculo</button>
+          <button class="btn btn-outline-light me-4"routerLink="/crear-tipo-vehiculo">Agregar un tipo de vehiculo</button>
+          <button class="btn btn-outline-light me-4"routerLink="/crear-tipo-mantencion">Agregar un tipo de mantencion</button>
+          <button class="btn btn-outline-light"routerLink="/crear-mecanico">Agregar mecanico</button>
     </div>
 </body>

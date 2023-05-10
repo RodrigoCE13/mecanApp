@@ -12,6 +12,7 @@ import { CreateTipoMantencionComponent } from './components/create-tipo-mantenci
 import { CreateTipoVehiculoComponent } from './components/create-tipo-vehiculo/create-tipo-vehiculo.component';
 import { CreateMarcaComponent } from './components/create-marca/create-marca.component';
 import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mantenciones.component';
+import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mecanico.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'login', pathMatch:'full' },//redirecciona a login si no hay nada en la url
@@ -22,11 +23,13 @@ const routes: Routes = [
   { path: 'dashboard', component:DashboardComponent },
   { path: 'crear-vehiculo', component:CreateVehiculoComponent },
   { path: 'crear-mantencion', component:CreateMantencionComponent },
-  { path: 'crear-mecanico', component:CreateMecanicoComponent },
+  { path: 'crear-mecanico', component:CreateMecanicoComponent },//ruta para crear mecanico
+  { path: 'editar-mecanico/:id', component:CreateMecanicoComponent },//ruta para editar mecanico(se reutiliza el componente y se le pasa el id)
   { path: 'crear-tipo-mantencion', component:CreateTipoMantencionComponent },
   { path: 'crear-tipo-vehiculo', component:CreateTipoVehiculoComponent },
   { path: 'crear-marca', component:CreateMarcaComponent },
   { path: 'mantenciones', component:VerMantencionesComponent },
+  { path: 'listar-mecanicos', component:ListarMecanicoComponent },
   { path:'**', redirectTo:'login', pathMatch:'full' }//redirecciona a login si no existe la ruta (siempre poner al final)
 ];
 

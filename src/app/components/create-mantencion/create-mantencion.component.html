@@ -1,1 +1,52 @@
-<p>create-mantencion works!</p>
+<body class="inicio">
+    <app-header></app-header>
+    <div>
+        <div class="m-5">
+            <div class="row align-items-center mb-2">
+                <div class="col">
+                    <h1 class="text-white">Agregar nueva mantencion a: </h1>
+                </div>
+                <div class="mt-4">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">Fecha</label>
+                                <input class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">Tipo</label>
+                                <select class="form-select">
+                                    <option selected>Seleccione un tipo</option>
+                                    <option>Cambio de aceite</option>
+                                    <option>Alineacion</option>
+                                    <option>Cambio de correa</option>
+                                    <option>Balanceo</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">Costo</label>
+                                <input class="form-control">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">Encargado</label>
+                                <select class="form-select">
+                                    <option selected>Seleccione un mecanico</option>
+                                    <option>Juan</option>
+                                    <option>Pablo</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <label class="form-label" style="color: #EFEFEF;">Descripcion</label>
+                        <textarea class="form-control"></textarea>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-4">
+                <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
+                <button class="btn btn-outline-info" >Limpiar</button>
+            </div>
+        </div>
+    </div>
+</body>

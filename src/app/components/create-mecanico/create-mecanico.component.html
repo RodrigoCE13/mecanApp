@@ -1,1 +1,37 @@
-<p>create-mecanico works!</p>
+<body class="inicio">
+    <app-header></app-header>
+    <div>
+        <div class="m-5">
+            <div class="row align-items-center mb-2">
+                <div class="col">
+                    <h1 class="text-white">{{titulo}}mecanico/taller
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </h1>
+                    
+                </div>
+                <div class="mt-4">
+                    
+                    <form [formGroup]="createMecanico" (ngSubmit)="agregarEditar()">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">Nombre</label>
+                                <input class="form-control" formControlName="nombre">
+                                <span *ngIf="submitted && createMecanico.invalid" class="text-danger error-label">Debe ingresar un nombre</span>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" style="color: #EFEFEF;">fono</label>
+                                <input class="form-control" formControlName="fono">
+                            </div>
+                        </div>
+                        <label class="form-label mt-2" style="color: #EFEFEF;">Direccion</label>
+                        <input class="form-control" formControlName="direccion">
+                        <div class="mt-4">
+                            <button class="btn me-2" type="submit" style="background: #F66B0E; color: #EFEFEF;">{{titulo}}</button>
+                            <button class="btn btn-outline-info" (click)="limpiarCampos()" >Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

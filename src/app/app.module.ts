@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 //modulos
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat'//<-- modulo de firebase
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AngularFirestoreModule} from '@angular/fire/compat/firestore';//modulo para la base de datos
 
 //componentes
 import { AppComponent } from './app.component';
@@ -25,6 +26,8 @@ import { CreateTipoMantencionComponent } from './components/create-tipo-mantenci
 import { CreateTipoVehiculoComponent } from './components/create-tipo-vehiculo/create-tipo-vehiculo.component';
 import { CreateMarcaComponent } from './components/create-marca/create-marca.component';
 import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mantenciones.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mecanico.component';
 
 @NgModule({
   declarations: [
@@ -42,15 +45,18 @@ import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mant
     CreateTipoMantencionComponent,
     CreateTipoVehiculoComponent,
     CreateMarcaComponent,
-    VerMantencionesComponent
+    VerMantencionesComponent,
+    ListarMecanicoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BsDropdownModule.forRoot(),
     ReactiveFormsModule,//agregamos el modulo de formularios reactivos
     AngularFireModule.initializeApp(environment.firebaseConfig),//agregamos el modulo de firebase 
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
