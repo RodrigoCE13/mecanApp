@@ -15,15 +15,31 @@
           <li class="nav-item">
             <a class="nav-link " aria-current="page" routerLinkActive="active" routerLink="/dashboard"><i class="fa-solid fa-house"></i> Inicio</a>
           </li>
-          <li class="nav-item dropdown" dropdown >
-            <a class="nav-link dropdown-toggle " routerLinkActive="active" dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item dropdown" dropdown>
+            <a class="nav-link dropdown-toggle " dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Vehiculos
             </a>
             <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/crear-vehiculo">Agregar vehiculo</a></li>
+              <li><a class="dropdown-item" routerLink="/crear-vehiculo">Agregar Vehiculo</a></li>
+              <li><a class="dropdown-item" routerLink="/listar-vehiculos">Ver listado</a></li>
+            </div>
+          </li>
+          <li class="nav-item dropdown" dropdown>
+            <a class="nav-link dropdown-toggle " dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Marcas
+            </a>
+            <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" routerLink="/crear-marca">Agregar marca</a></li>
-              <li><a class="dropdown-item" routerLink="/crear-tipo-vehiculo">Agregar tipo</a></li>
-              <li><a class="dropdown-item" routerLink="/crear-vehiculo">Ver listado</a></li>
+              <li><a class="dropdown-item" routerLink="/listar-marcas">Ver listado</a></li>
+            </div>
+          </li>
+          <li class="nav-item dropdown" dropdown>
+            <a class="nav-link dropdown-toggle " dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tipos de vehiculos
+            </a>
+            <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/crear-tipo-vehiculo">Agregar Tipo</a></li>
+              <li><a class="dropdown-item" routerLink="/listar-tipo-vehiculos">Ver listado</a></li>
             </div>
           </li>
           <li class="nav-item dropdown" dropdown>
@@ -36,13 +52,16 @@
             </div>
           </li>
           <li class="nav-item dropdown" dropdown>
-            <a class="nav-link dropdown-toggle " routerLinkActive="active" dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Mantenciones
+            <a class="nav-link dropdown-toggle " dropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tipo de mantencion
             </a>
             <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/crear-mantencion">Ver vehiculos</a></li>
-              <li><a class="dropdown-item" routerLink="/crear-tipo-mantencion">Agregar tipo de mantencion</a></li>
+              <li><a class="dropdown-item" routerLink="/crear-tipo-mantencion">Agregar Tipo</a></li>
+              <li><a class="dropdown-item" routerLink="/listar-tipo-mantencion">Ver listado</a></li>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" routerLinkActive="active" routerLink="/crear-mantencion"><i class="fa-solid fa-clipboard-list fa-lg"></i> Mantenciones</a>
           </li>
         </ul>
 

@@ -13,6 +13,9 @@ import { CreateTipoVehiculoComponent } from './components/create-tipo-vehiculo/c
 import { CreateMarcaComponent } from './components/create-marca/create-marca.component';
 import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mantenciones.component';
 import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mecanico.component';
+import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-vehiculos.component';
+import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
+import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'login', pathMatch:'full' },//redirecciona a login si no hay nada en la url
@@ -21,15 +24,32 @@ const routes: Routes = [
   { path: 'verificar-correo', component: VerificarCorreoComponent },
   { path: 'recuperar-password', component: RecuperarPasswordComponent },
   { path: 'dashboard', component:DashboardComponent },
-  { path: 'crear-vehiculo', component:CreateVehiculoComponent },
-  { path: 'crear-mantencion', component:CreateMantencionComponent },
+  
+  //mecanico
   { path: 'crear-mecanico', component:CreateMecanicoComponent },//ruta para crear mecanico
   { path: 'editar-mecanico/:id', component:CreateMecanicoComponent },//ruta para editar mecanico(se reutiliza el componente y se le pasa el id)
-  { path: 'crear-tipo-mantencion', component:CreateTipoMantencionComponent },
-  { path: 'crear-tipo-vehiculo', component:CreateTipoVehiculoComponent },
-  { path: 'crear-marca', component:CreateMarcaComponent },
-  { path: 'mantenciones', component:VerMantencionesComponent },
   { path: 'listar-mecanicos', component:ListarMecanicoComponent },
+  
+  //tipo vehiculo
+  { path: 'crear-tipo-vehiculo', component:CreateTipoVehiculoComponent },
+  { path: 'editar-tipo-vehiculo/:id', component:CreateTipoVehiculoComponent },
+  { path: 'listar-tipo-vehiculos', component:ListaTipoVehiculosComponent },
+  
+  //marca
+  { path: 'crear-marca', component:CreateMarcaComponent },
+  { path: 'editar-marca/:id', component:CreateMarcaComponent },
+  { path: 'listar-marcas', component:ListarMarcasComponent },
+  
+  //mantencion
+  { path: 'crear-mantencion', component:CreateMantencionComponent },
+  { path: 'mantenciones', component:VerMantencionesComponent },
+
+  { path: 'crear-tipo-mantencion', component:CreateTipoMantencionComponent },
+
+  //vehiculo
+  { path: 'crear-vehiculo', component:CreateVehiculoComponent },
+  { path: 'listar-vehiculos', component:ListarVehiculosComponent },
+
   { path:'**', redirectTo:'login', pathMatch:'full' }//redirecciona a login si no existe la ruta (siempre poner al final)
 ];
 

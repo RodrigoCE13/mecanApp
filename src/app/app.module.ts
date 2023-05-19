@@ -29,6 +29,9 @@ import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mant
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mecanico.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-vehiculos.component';
+import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
+import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     CreateTipoVehiculoComponent,
     CreateMarcaComponent,
     VerMantencionesComponent,
-    ListarMecanicoComponent
+    ListarMecanicoComponent,
+    ListarVehiculosComponent,
+    ListaTipoVehiculosComponent,
+    ListarMarcasComponent
   ],
   imports: [
     BrowserModule,

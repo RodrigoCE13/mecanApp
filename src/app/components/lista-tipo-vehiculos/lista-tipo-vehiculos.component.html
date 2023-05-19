@@ -1,0 +1,32 @@
+<body class="inicio">
+    <app-header></app-header>
+    <div>
+        <div class="m-5">
+            <div class="row align-items-center mb-2">
+                <div class="col">
+                    <h1 class="text-white">Lista de tipos de vehiculos</h1>
+                </div>
+            </div>
+
+            <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="tiposVehiculo.length == 0">No hay datos para mostrar</h4>
+
+            <table *ngIf="tiposVehiculo.length > 0" class="table mt-5" style="background: #EFEFEF;">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th>Modificar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tipoVehiculo of tiposVehiculo">
+                    <th scope="row">{{ tipoVehiculo.nombre }}</th>
+                    <td>
+                        <button [routerLink]="['/editar-tipo-vehiculo/',tipoVehiculo.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                        <button (click)="eliminarTiposVehiculo(tipoVehiculo.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
