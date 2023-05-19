@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   dataUser:any;
+  isCollapsed : boolean = true;
 
   constructor(private afAuth: AngularFireAuth,
     private router:Router) { }
@@ -26,4 +27,5 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.afAuth.signOut().then(()=>this.router.navigate(['/login']));//<-- Cerramos sesion y redireccionamos al login
   }
+  
 }

@@ -28,6 +28,7 @@ import { CreateMarcaComponent } from './components/create-marca/create-marca.com
 import { VerMantencionesComponent } from './components/ver-mantenciones/ver-mantenciones.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mecanico.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mec
     AngularFireModule.initializeApp(environment.firebaseConfig),//agregamos el modulo de firebase 
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

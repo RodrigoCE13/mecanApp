@@ -15,6 +15,7 @@ export class CreateMecanicoComponent implements OnInit {
   loading=false;
   id:string| null;//<-- Variable para almacenar el id del mecanico
   titulo='Agregar ';
+  tipo:string[]=['Interno','Externo','Taller'];
 
   constructor(private fb: FormBuilder,
     private _mecanicoService: MecanicoService,//<-- Agregamos el servicio (los servicios llevan el guion bajo)
@@ -26,6 +27,7 @@ export class CreateMecanicoComponent implements OnInit {
       nombre: ['', Validators.required],
       fono: [],
       direccion: [],
+      tipoMecanico:[]
     });
     this.id=this.aRoute.snapshot.paramMap.get('id');//<-- Obtenemos el id del mecanico que viene por la url
   }
@@ -53,6 +55,7 @@ export class CreateMecanicoComponent implements OnInit {
       nombre: this.createMecanico.value.nombre,
       fono: this.createMecanico.value.fono,
       direccion: this.createMecanico.value.direccion,
+      tipoMecanico: this.createMecanico.value.tipoMecanico,
       fechaActualizacion: new Date(),
     }
     this.loading=true;
@@ -71,6 +74,7 @@ export class CreateMecanicoComponent implements OnInit {
       direccion: this.createMecanico.value.direccion,
       fechaCreacion: new Date(),//<-- Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
       fechaActualizacion: new Date(),
+      tipoMecanico:this.createMecanico.value.tipoMecanico,
     }
     this.loading=true;
     this._mecanicoService.agregarMecanico(mecanico).then(()=>{//<-- Llamamos al metodo agregarMecanico del servicio y le pasamos el objeto mecanico
@@ -95,6 +99,7 @@ export class CreateMecanicoComponent implements OnInit {
           nombre: data.payload.data()['nombre'],
           fono: data.payload.data()['fono'],
           direccion: data.payload.data()['direccion'],
+          tipoMecanico: data.payload.data()['tipoMecanico'],
         })
       })
     }

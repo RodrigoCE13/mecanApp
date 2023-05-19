@@ -16,6 +16,7 @@
                     <th scope="col">Nombre</th>
                     <th>Fono</th>
                     <th>Direccion</th>
+                    <th>Tipo</th>
                     <th>Modificar</th>
                   </tr>
                 </thead>
@@ -24,6 +25,7 @@
                     <th scope="row">{{ mecanico.nombre }}</th>
                     <td>{{ mecanico.fono }}</td>
                     <td>{{ mecanico.direccion }}</td>
+                    <td>{{ mecanico.tipoMecanico }}</td>
                     <td>
                         <button [routerLink]="['/editar-mecanico/',mecanico.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                         <button (click)="eliminarMecanico(mecanico.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
