@@ -8,12 +8,16 @@ import { Observable } from 'rxjs';
 export class TipoVehiculoService {
 
   constructor(private firestore:AngularFirestore) { }
+
+  //agregar
   agregarTipoVehiculo(tipoVehiculo:any): Promise<any>{
     return this.firestore.collection('tipoVehiculo').add(tipoVehiculo);
   }
+  //obtener
   getTipoVehiculos(): Observable<any>{
     return this.firestore.collection('tipoVehiculo',ref => ref.orderBy('fechaCreacion','asc')).snapshotChanges(); 
   }
+  //eliminar
   eliminarTipoVehiculo(id:string):Promise<any>{
     return this.firestore.collection('tipoVehiculo').doc(id).delete();
   }

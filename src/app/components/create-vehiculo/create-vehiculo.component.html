@@ -4,51 +4,46 @@
         <div class="m-5">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">Agregar un nuevo vehiculo</h1>
+                    <h1 class="text-white">{{titulo}}vehiculo
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </h1>
                 </div>
                 <div class="mt-4">
-                    <form>
+                    <form [formGroup]="createVehiculo" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Patente</label>
-                                <input class="form-control">
+                                <input class="form-control" formControlName="patente">
                             </div>
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Tipo</label>
-                                <select class="form-select">
-                                    <option selected>Seleccione un tipo</option>
-                                    <option>Camion</option>
-                                    <option>Bus</option>
-                                    <option>Furgon</option>
-                                    <option>Vehiculo</option>
+                                <select ngModel="vehiculo.tipo" class="form-select" formControlName="tipoVehiculo">
+                                    <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>
                                   </select>
                             </div>
                         </div>
                         <label class="form-label mt-2" style="color: #EFEFEF;">Marca</label>
-                        <select class="form-select">
-                            <option selected>Seleccione una marca</option>
-                            <option>Nissan</option>
-                            <option>Volvo</option>
-                            <option>Reanult</option>
+                        <select ngModel="vehiculo.marca" class="form-select" formControlName="marca">
+                            <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
                           </select>
                         <label class="form-label mt-2" style="color: #EFEFEF;">Modelo</label>
-                        <input class="form-control">
+                        <input class="form-control" formControlName="modelo">
                         <div class="row mt-2">
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Precio de compra</label>
-                                <input class="form-control">
+                                <input class="form-control" formControlName="precio">
                             </div>
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Año</label>
-                                <input class="form-control">
+                                <input class="form-control" formControlName="año">
                             </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
+                            <button class="btn btn-outline-info" >Limpiar</button>
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="mt-4">
-                <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
-                <button class="btn btn-outline-info" >Limpiar</button>
             </div>
         </div>
     </div>
