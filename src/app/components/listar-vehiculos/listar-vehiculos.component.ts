@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder} from '@angular/forms';
+import { VehiculoService } from '../../services/vehiculo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listar-vehiculos',
@@ -6,10 +9,75 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-vehiculos.component.css']
 })
 export class ListarVehiculosComponent implements OnInit {
+  vehiculos:any[]=[];
+  marcas: any[] = [];
+  tipos: any[] = [];
 
-  constructor() { }
+  constructor(private fb: FormBuilder,
+    private _vehiculoServices: VehiculoService,
+    private toastr: ToastrService,) { }
 
   ngOnInit(): void {
+    this.getVehiculos();
+    this.getMarcas();
+    this.getTipos();
+  }
+
+  getVehiculos() {
+    this._vehiculoServices.getVehiculos().subscribe(data => {
+      this.vehiculos = [];
+      data.forEach((element: any) => {
+        const vehiculo = element.payload.doc.data();
+        vehiculo.id = element.payload.doc.id;
+        this.vehiculos.push(vehiculo);
+      });
+      console.log(this.vehiculos);
+    });
+  }
+
+  getMarcas() {
+    this._vehiculoServices.getMarcas().subscribe(data => {
+      this.marcas = [];
+      data.forEach((element: any) => {
+        const marca = element.payload.doc.data();
+        marca.id = element.payload.doc.id;
+        this.marcas.push(marca);
+      });
+      console.log(this.marcas);
+    });
+  }
+
+  getTipos() {
+    this._vehiculoServices.getTipos().subscribe(data => {
+      this.tipos = [];
+      data.forEach((element: any) => {
+        const tipo = element.payload.doc.data();
+        tipo.id = element.payload.doc.id;
+        this.tipos.push(tipo);
+      });
+      console.log(this.tipos);
+    });
+  }
+
+  getMarcaNombre(marcaId: string): string {
+    const marca = this.marcas.find(m => m.id === marcaId);
+    return marca ? marca.nombre : '';
+  }
+
+  getTipoNombre(tipoId: string): string {
+    const tipo = this.tipos.find(t => t.id === tipoId);
+    return tipo ? tipo.nombre : '';
+  }
+
+
+
+  eliminarVehiculo(id:string){
+    this._vehiculoServices.eliminarVehiculo(id).then(()=>{
+      console.log('Vehiculo eliminado con exito');
+      this.toastr.error('El vehiculo fue eliminado con exito!', 'Vehiculo eliminado',{positionClass: 'toast-bottom-right'});
+    }).catch(error=>{
+      console.log(error);
+    })
   }
 
 }

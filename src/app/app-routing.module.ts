@@ -48,6 +48,7 @@ const routes: Routes = [
 
   //vehiculo
   { path: 'crear-vehiculo', component:CreateVehiculoComponent },
+  { path: 'editar-vehiculo/:id', component:CreateVehiculoComponent },
   { path: 'listar-vehiculos', component:ListarVehiculosComponent },
 
   { path:'**', redirectTo:'login', pathMatch:'full' }//redirecciona a login si no existe la ruta (siempre poner al final)

@@ -1,1 +1,38 @@
-<p>listar-vehiculos works!</p>
+<body class="inicio">
+    <app-header></app-header>
+    <div>
+        <div class="m-5">
+            <div class="row align-items-center mb-2">
+                <div class="col">
+                    <h1 class="text-white">Lista de vehiculos</h1>
+                </div>
+            </div>
+
+            <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="vehiculos.length == 0">No hay datos para mostrar</h4>
+
+            <table *ngIf="vehiculos.length > 0" class="table mt-5" style="background: #EFEFEF;">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th scope="col">Patente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tipo</th>
+                    <th>Modificar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let vehiculo of vehiculos">
+                    <th scope="row">{{ vehiculo.patente }}</th>
+                    <td>{{ getMarcaNombre(vehiculo.marca) }}</td>
+                    <td>{{ vehiculo.modelo }}</td>
+                    <td>{{ getTipoNombre(vehiculo.tipoVehiculo) }}</td>
+                    <td>
+                        <button [routerLink]="['/editar-vehiculo/',vehiculo.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                        <button (click)="eliminarVehiculo(vehiculo.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>

@@ -126,7 +126,7 @@ export class CreateVehiculoComponent implements OnInit {
           precio: data.payload.data()['precio'],
           año: data.payload.data()['año'],
           marca: data.payload.data()['marca'],
-          tiposVehiculo: data.payload.data()['tipoVehiculo'],
+          tipoVehiculo: data.payload.data()['tipoVehiculo'],
         })
       })
     }
