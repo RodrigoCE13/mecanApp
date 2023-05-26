@@ -4,18 +4,21 @@
         <div class="m-5">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">Agregar una tipo de mantencion</h1>
+                    <h1 class="text-white">{{titulo}}un tipo de mantencion
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </h1>
                 </div>
                 <div class="mt-4">
-                    <form>
+                    <form [formGroup]="createTipoMantencion" (ngSubmit)="agregarEditar()">
                         <label class="form-label mt-4" style="color: #EFEFEF;">Nombre de la mantencion</label>
-                        <input class="form-control">
+                        <input class="form-control" formControlName="nombre">
+                        <span *ngIf="submitted && createTipoMantencion.invalid" class="text-danger error-label">Debe ingresar un tipo</span>
+                        <div class="mt-4">
+                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
+                            <button class="btn btn-outline-info" >Limpiar</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="mt-4">
-                <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
-                <button class="btn btn-outline-info" >Limpiar</button>
             </div>
         </div>
     </div>

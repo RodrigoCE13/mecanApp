@@ -16,6 +16,7 @@ import { ListarMecanicoComponent } from './components/listar-mecanico/listar-mec
 import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-vehiculos.component';
 import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
 import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
+import { ListarTipoMantencionComponent } from './components/listar-tipo-mantencion/listar-tipo-mantencion.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'login', pathMatch:'full' },//redirecciona a login si no hay nada en la url
@@ -44,7 +45,10 @@ const routes: Routes = [
   { path: 'crear-mantencion', component:CreateMantencionComponent },
   { path: 'mantenciones', component:VerMantencionesComponent },
 
+  //tipo mantencion
   { path: 'crear-tipo-mantencion', component:CreateTipoMantencionComponent },
+  { path: 'editar-tipo-mantencion/:id', component:CreateTipoMantencionComponent },
+  { path: 'listar-tipo-mantencion', component:ListarTipoMantencionComponent },
 
   //vehiculo
   { path: 'crear-vehiculo', component:CreateVehiculoComponent },

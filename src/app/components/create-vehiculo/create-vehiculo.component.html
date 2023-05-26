@@ -14,20 +14,30 @@
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Patente</label>
                                 <input class="form-control" formControlName="patente">
+                                <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Tipo</label>
-                                <select ngModel="vehiculo.tipo" class="form-select" formControlName="tipoVehiculo">
+                                <select class="form-select" formControlName="tipoVehiculo">
+                                    <option value="" disabled selected>Seleccione una opción</option>
                                     <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>
                                   </select>
+                                  <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Debe seleccionar un tipo</span>
                             </div>
                         </div>
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Marca</label>
-                        <select ngModel="vehiculo.marca" class="form-select" formControlName="marca">
-                            <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
-                          </select>
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Modelo</label>
-                        <input class="form-control" formControlName="modelo">
+                        <div>
+                            <label class="form-label mt-2" style="color: #EFEFEF;">Marca</label>
+                            <select class="form-select" formControlName="marca">
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
+                              </select>
+                              <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Debe seleccionar una marca</span>
+                        </div>
+                        <div>
+                            <label class="form-label mt-2" style="color: #EFEFEF;">Modelo</label>
+                            <input class="form-control" formControlName="modelo">
+                            <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label mb-2">Ingrese el modelo del vehiculo</span>
+                        </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Precio de compra</label>
@@ -37,6 +47,10 @@
                                 <label class="form-label" style="color: #EFEFEF;">Año</label>
                                 <input class="form-control" formControlName="año">
                             </div>
+                        </div>
+                        <div>
+                            <label class="form-label mt-2" style="color: #EFEFEF;">Kilometraje</label>
+                            <input class="form-control" formControlName="kilometraje">
                         </div>
                         <div class="mt-4">
                             <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>

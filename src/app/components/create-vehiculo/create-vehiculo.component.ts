@@ -29,7 +29,8 @@ export class CreateVehiculoComponent implements OnInit {
         precio: ['', Validators.required],
         año:['', Validators.required],
         marca: ['', Validators.required],
-        tipoVehiculo: ['', Validators.required]
+        tipoVehiculo: ['', Validators.required],
+        kilometraje: ['', Validators.required],
       });
       this.id=this.aRoute.snapshot.paramMap.get('id');
     }
@@ -79,6 +80,7 @@ export class CreateVehiculoComponent implements OnInit {
       año: this.createVehiculo.value.año,
       marca: this.createVehiculo.value.marca,
       tipoVehiculo: this.createVehiculo.value.tipoVehiculo,
+      kilometraje: this.createVehiculo.value.kilometraje,
       fechaActualizacion: new Date(),
     }
     this.loading=true;
@@ -98,6 +100,7 @@ export class CreateVehiculoComponent implements OnInit {
       año: this.createVehiculo.value.año,
       marca: this.createVehiculo.value.marca,
       tipoVehiculo: this.createVehiculo.value.tipoVehiculo,
+      kilometraje: this.createVehiculo.value.kilometraje,
       fechaCreacion: new Date(),//<-- Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
       fechaActualizacion: new Date(),
     }
@@ -127,6 +130,7 @@ export class CreateVehiculoComponent implements OnInit {
           año: data.payload.data()['año'],
           marca: data.payload.data()['marca'],
           tipoVehiculo: data.payload.data()['tipoVehiculo'],
+          kilometraje: data.payload.data()['kilometraje'],
         })
       })
     }

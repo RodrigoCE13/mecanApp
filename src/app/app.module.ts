@@ -32,6 +32,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-vehiculos.component';
 import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
 import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
+import { ListarTipoMantencionComponent } from './components/listar-tipo-mantencion/listar-tipo-mantencion.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.
     ListarMecanicoComponent,
     ListarVehiculosComponent,
     ListaTipoVehiculosComponent,
-    ListarMarcasComponent
+    ListarMarcasComponent,
+    ListarTipoMantencionComponent
   ],
   imports: [
     BrowserModule,
