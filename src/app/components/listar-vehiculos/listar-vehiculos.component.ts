@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder} from '@angular/forms';
 import { VehiculoService } from '../../services/vehiculo.service';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-listar-vehiculos',
@@ -14,6 +15,7 @@ export class ListarVehiculosComponent implements OnInit {
   tipos: any[] = [];
 
   constructor(private fb: FormBuilder,
+    private afAuth: AngularFireAuth,
     private _vehiculoServices: VehiculoService,
     private toastr: ToastrService,) { }
 
@@ -22,6 +24,7 @@ export class ListarVehiculosComponent implements OnInit {
     this.getMarcas();
     this.getTipos();
   }
+  
 
   getVehiculos() {
     this._vehiculoServices.getVehiculos().subscribe(data => {

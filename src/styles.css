@@ -30,3 +30,17 @@ html,body{
     background-color: #205375;
 }
 
+.errorMensaje{
+    color: white;
+    background: rgb(163, 23, 23);
+    border-radius: 4px;
+    padding: 0 1%;
+}
+
+.linkForm{
+    color: deepskyblue;
+}
+.linkForm:hover{
+    color:dodgerblue;
+}
+

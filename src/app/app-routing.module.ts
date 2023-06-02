@@ -43,6 +43,7 @@ const routes: Routes = [
   
   //mantencion
   { path: 'crear-mantencion', component:CreateMantencionComponent },
+  { path: 'editar-mantencion/:id', component:CreateMantencionComponent },
   { path: 'mantenciones', component:VerMantencionesComponent },
 
   //tipo mantencion

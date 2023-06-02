@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat'//<-- modulo de firebase
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFirestoreModule} from '@angular/fire/compat/firestore';//modulo para la base de datos
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';//modulo para la autenticacion
 
 //componentes
 import { AppComponent } from './app.component';
@@ -66,7 +67,8 @@ import { ListarTipoMantencionComponent } from './components/listar-tipo-mantenci
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     AngularFirestoreModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

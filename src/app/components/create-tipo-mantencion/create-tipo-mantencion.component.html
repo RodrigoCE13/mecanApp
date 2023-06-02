@@ -12,7 +12,7 @@
                     <form [formGroup]="createTipoMantencion" (ngSubmit)="agregarEditar()">
                         <label class="form-label mt-4" style="color: #EFEFEF;">Nombre de la mantencion</label>
                         <input class="form-control" formControlName="nombre">
-                        <span *ngIf="submitted && createTipoMantencion.invalid" class="text-danger error-label">Debe ingresar un tipo</span>
+                        <span *ngIf="submitted && createTipoMantencion.invalid" class="errorMensaje">Debe ingresar un tipo</span>
                         <div class="mt-4">
                             <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
                             <button class="btn btn-outline-info" >Limpiar</button>

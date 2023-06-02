@@ -12,7 +12,7 @@
                     <form [formGroup]="createMarca" (ngSubmit)="agregarEditar()">
                         <label class="form-label mt-4" style="color: #EFEFEF;">Nombre de la marca</label>
                         <input class="form-control" formControlName="nombre">
-                        <span *ngIf="submitted && createMarca.invalid" class="text-danger error-label">Debe ingresar un nombre</span>
+                        <span *ngIf="submitted && createMarca.invalid" class="errorMensaje">Debe ingresar un nombre</span>
                         <div class="mt-4">
                             <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">{{titulo}}</button>
                             <button class="btn btn-outline-info" >Limpiar</button>

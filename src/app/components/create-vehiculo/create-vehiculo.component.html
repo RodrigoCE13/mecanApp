@@ -12,31 +12,39 @@
                     <form [formGroup]="createVehiculo" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Patente</label>
+                                <label class="form-label" style="color: #EFEFEF;">Patente *</label>
                                 <input class="form-control" formControlName="patente">
-                                <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Ingrese la patente del vehiculo</span>
+                                <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Tipo</label>
+                                <label class="form-label" style="color: #EFEFEF;">Tipo *</label>
                                 <select class="form-select" formControlName="tipoVehiculo">
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>
                                   </select>
-                                  <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Debe seleccionar un tipo</span>
+                                  <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Debe seleccionar un tipo</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label mt-2" style="color: #EFEFEF;">Marca *</label>
+                                <select class="form-select" formControlName="marca">
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
+                                  </select>
+                                  <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Debe seleccionar una marca</span>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="">
+                                    <label class="text-white ">si no encuentra la marca, puede agregarla 
+                                        <a routerLink="/crear-marca" class="linkForm">haciendo click aqui</a></label> 
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <label class="form-label mt-2" style="color: #EFEFEF;">Marca</label>
-                            <select class="form-select" formControlName="marca">
-                                <option value="" disabled selected>Seleccione una opción</option>
-                                <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
-                              </select>
-                              <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label">Debe seleccionar una marca</span>
-                        </div>
-                        <div>
-                            <label class="form-label mt-2" style="color: #EFEFEF;">Modelo</label>
+                            <label class="form-label mt-2" style="color: #EFEFEF;">Modelo *</label>
                             <input class="form-control" formControlName="modelo">
-                            <span *ngIf="submitted && createVehiculo.invalid" class="text-danger error-label mb-2">Ingrese el modelo del vehiculo</span>
+                            <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Ingrese el modelo del vehiculo</span>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
@@ -53,7 +61,7 @@
                             <input class="form-control" formControlName="kilometraje">
                         </div>
                         <div class="mt-4">
-                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
+                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">{{titulo}}</button>
                             <button class="btn btn-outline-info" >Limpiar</button>
                         </div>
                     </form>

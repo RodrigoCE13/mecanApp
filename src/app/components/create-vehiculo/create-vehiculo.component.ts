@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VehiculoService } from '../../services/vehiculo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-create-vehiculo',
@@ -18,7 +19,9 @@ export class CreateVehiculoComponent implements OnInit {
   marcas: any[] = [];
   tipos: any[] = [];
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private afAuth: AngularFireAuth,
+    private fb: FormBuilder,
     private _vehiculoService: VehiculoService,//<-- Agregamos el servicio (los servicios llevan el guion bajo)
     private router: Router,
     private toastr: ToastrService,
@@ -26,16 +29,17 @@ export class CreateVehiculoComponent implements OnInit {
       this.createVehiculo = this.fb.group({
         patente: ['', Validators.required],
         modelo: ['', Validators.required],
-        precio: ['', Validators.required],
-        año:['', Validators.required],
+        precio: [],
+        año:[],
         marca: ['', Validators.required],
         tipoVehiculo: ['', Validators.required],
-        kilometraje: ['', Validators.required],
+        kilometraje: [],
       });
       this.id=this.aRoute.snapshot.paramMap.get('id');
     }
 
   ngOnInit(): void {
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
     this.esEditar();
     this._vehiculoService.getTipos().subscribe(data => {
       this.tipos = [];
@@ -71,9 +75,10 @@ export class CreateVehiculoComponent implements OnInit {
     
   }
 
-  editarVehiculo( id:string ){
-    
-    const vehiculo:any={//<-- Creamos un objeto con los datos del formulario
+  
+
+  editarVehiculo(id: string) {
+    const vehiculo: any = {
       patente: this.createVehiculo.value.patente,
       modelo: this.createVehiculo.value.modelo,
       precio: this.createVehiculo.value.precio,
@@ -82,18 +87,25 @@ export class CreateVehiculoComponent implements OnInit {
       tipoVehiculo: this.createVehiculo.value.tipoVehiculo,
       kilometraje: this.createVehiculo.value.kilometraje,
       fechaActualizacion: new Date(),
-    }
-    this.loading=true;
-    
-    this._vehiculoService.actualizarVehiculo(id, vehiculo).then(()=>{
-      this.loading=false;
-      this.toastr.info('El vehiculo fue modificado con exito!', 'Vehiculo modificado',{positionClass: 'toast-bottom-right'});
-      this.router.navigate(['/listar-vehiculos']);
-    })
+    };
+  
+    this.loading = true;
+  
+    this.afAuth.currentUser.then(user => {
+      if (user) {
+        vehiculo.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+      }
+  
+      this._vehiculoService.actualizarVehiculo(id, vehiculo).then(() => {
+        this.loading = false;
+        this.toastr.info('El vehiculo fue modificado con exito!', 'Vehiculo modificado', { positionClass: 'toast-bottom-right' });
+        this.router.navigate(['/listar-vehiculos']);
+      });
+    });
   }
 
-  agregarVehiculo(){
-    const vehiculo:any={//<-- Creamos un objeto con los datos del formulario
+  agregarVehiculo() {
+    const vehiculo: any = {
       patente: this.createVehiculo.value.patente,
       modelo: this.createVehiculo.value.modelo,
       precio: this.createVehiculo.value.precio,
@@ -101,19 +113,27 @@ export class CreateVehiculoComponent implements OnInit {
       marca: this.createVehiculo.value.marca,
       tipoVehiculo: this.createVehiculo.value.tipoVehiculo,
       kilometraje: this.createVehiculo.value.kilometraje,
-      fechaCreacion: new Date(),//<-- Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
+      fechaCreacion: new Date(),
       fechaActualizacion: new Date(),
-    }
-    this.loading=true;
-    this._vehiculoService.agregarVehiculo(vehiculo).then(()=>{
-      console.log('Vehiculo creado con exito');
-      this.toastr.success('El vehiculo fue registrado con exito!', 'Vehiculo registrado',{positionClass: 'toast-bottom-right'});
-      this.loading=false;
-      this.router.navigate(['/listar-vehiculos']);
-    }).catch(error=>{
-      console.log(error);
-      this.loading=false;
-    })
+    };
+  
+    this.loading = true;
+  
+    this.afAuth.currentUser.then(user => {
+      if (user) {
+        vehiculo.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+      }
+  
+      this._vehiculoService.agregarVehiculo(vehiculo).then(() => {
+        console.log('Vehiculo creado con exito');
+        this.toastr.success('El vehiculo fue registrado con exito!', 'Vehiculo registrado', { positionClass: 'toast-bottom-right' });
+        this.loading = false;
+        this.router.navigate(['/listar-vehiculos']);
+      }).catch(error => {
+        console.log(error);
+        this.loading = false;
+      });
+    });
   }
 
   esEditar(){
@@ -135,5 +155,6 @@ export class CreateVehiculoComponent implements OnInit {
       })
     }
   }
+
 
 }

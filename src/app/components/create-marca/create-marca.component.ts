@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MarcaService } from '../../services/marca.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-create-marca',
@@ -17,6 +18,7 @@ export class CreateMarcaComponent implements OnInit {
   titulo='Agregar ';
 
   constructor(private fb: FormBuilder,
+    private afAuth: AngularFireAuth,
     private _marcaService: MarcaService,//<-- Agregamos el servicio (los servicios llevan el guion bajo)
     private router: Router,
     private toastr: ToastrService,
@@ -28,6 +30,7 @@ export class CreateMarcaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
     this.esEditar();
   }
 
@@ -51,11 +54,17 @@ export class CreateMarcaComponent implements OnInit {
       fechaActualizacion: new Date(),
     }
     this.loading=true;
+
+    this.afAuth.currentUser.then(user=>{
+      if(user){
+        marca.userId=user.uid;
+      }
     
-    this._marcaService.actualizarMarca(id, marca).then(()=>{
-      this.loading=false;
-      this.toastr.info('La marca fue modificada con exito!', 'Marca modificada',{positionClass: 'toast-bottom-right'});
-      this.router.navigate(['/listar-marcas']);
+      this._marcaService.actualizarMarca(id, marca).then(()=>{
+        this.loading=false;
+        this.toastr.info('La marca fue modificada con exito!', 'Marca modificada',{positionClass: 'toast-bottom-right'});
+        this.router.navigate(['/listar-marcas']);
+      })
     })
   }
 
@@ -66,14 +75,21 @@ export class CreateMarcaComponent implements OnInit {
       fechaActualizacion: new Date(),
     }
     this.loading=true;
-    this._marcaService.agregarMarca(marca).then(()=>{
-      console.log('Marca creado con exito');
-      this.toastr.success('La marca fue registrada con exito!', 'Marca registrada',{positionClass: 'toast-bottom-right'});
-      this.loading=false;
-      this.router.navigate(['/listar-marcas']);
-    }).catch(error=>{
-      console.log(error);
-      this.loading=false;
+
+    this.afAuth.currentUser.then(user=>{
+      if(user){
+        marca.userId=user.uid;
+      }
+
+      this._marcaService.agregarMarca(marca).then(()=>{
+       console.log('Marca creado con exito');
+        this.toastr.success('La marca fue registrada con exito!', 'Marca registrada',{positionClass: 'toast-bottom-right'});
+        this.loading=false;
+        this.router.navigate(['/listar-marcas']);
+      }).catch(error=>{
+        console.log(error);
+        this.loading=false;
+      })
     })
   }
 

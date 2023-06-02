@@ -10,25 +10,28 @@
 
             <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="vehiculos.length == 0">No hay datos para mostrar</h4>
 
-            <table *ngIf="vehiculos.length > 0" class="table mt-5" style="background: #EFEFEF;">
+            <table *ngIf="vehiculos.length > 0" class="table table-responsive mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
                 <thead class="bg-dark text-white">
                   <tr>
-                    <th scope="col">Patente</th>
+                    <th scope="col">#</th>
+                    <th>Patente</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Tipo</th>
-                    <th>Modificar</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let vehiculo of vehiculos">
-                    <th scope="row">{{ vehiculo.patente }}</th>
+                  <tr *ngFor="let vehiculo of vehiculos; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ vehiculo.patente }}</td>
                     <td>{{ getMarcaNombre(vehiculo.marca) }}</td>
                     <td>{{ vehiculo.modelo }}</td>
                     <td>{{ getTipoNombre(vehiculo.tipoVehiculo) }}</td>
-                    <td>
+                    <td class="text-end">
                         <button [routerLink]="['/editar-vehiculo/',vehiculo.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                         <button (click)="eliminarVehiculo(vehiculo.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-success me-2"><i class="fa-solid fa-dollar-sign"></i></button>
                     </td>
                   </tr>
                 </tbody>

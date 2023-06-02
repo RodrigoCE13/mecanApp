@@ -3,20 +3,17 @@
   <div class="m-5">
     <div class="container-fluid mb-4 p-3 shadow-lg rounded-4 bg-light">
       <h4 class="">Proximas mantenciones:</h4>
-      <div class="row justify-content-start">
-        <div class="col border p-3 m-2 rounded-2 shadow " style="background: #efefef">
-          <h5>patente - marca modelo</h5>
-          <p>fecha</p>
-        </div>
-        <div class="col border p-3 m-2 rounded-2 shadow" style="background: #efefef">
-          <h5>patente - marca modelo</h5>
-          <p>fecha</p>
+      <h4 style="color: #bbbbbb;" *ngIf="proximasMantenciones.length == 0">Sin proximas mantenciones</h4>
+      <div class="row justify-content-start" *ngIf="proximasMantenciones.length > 0">
+        <div class="col border p-3 m-2 rounded-2 shadow"  *ngFor="let mantencion of proximasMantenciones" style="background: #efefef">
+          <h5>{{getVehiculoPatente(mantencion.vehiculo)}} - {{getTipoPrevNombre(mantencion.tipoMantencionPreventiva)}}</h5>
+          <p>Fecha:<br> {{mantencion.fechaProxMantencion}}</p>
         </div>
     </div>
     </div>
     <div class="container-fluid mb-4 p-3 shadow-lg rounded-4 bg-light">
       <h4 class="">Lista de vehiculos:</h4>
-      <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="vehiculos.length == 0">No hay datos para mostrar</h4>
+      <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="vehiculos.length == 0">Aun no ingresa vehiculos</h4>
       <div class="row justify-content-start">
         <div class="col ">
           <table *ngIf="vehiculos.length > 0" class="table mt-2 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">

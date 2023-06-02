@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TipoMantencionPrevService } from '../../services/tipo-mantencion-prev.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-create-tipo-mantencion',
@@ -17,6 +18,7 @@ export class CreateTipoMantencionComponent implements OnInit {
   titulo='Agregar ';
 
   constructor(private fb: FormBuilder,
+    private afAuth: AngularFireAuth,
     private _tipoMantencionService: TipoMantencionPrevService,//<-- Agregamos el servicio (los servicios llevan el guion bajo)
     private router: Router,
     private toastr: ToastrService,
@@ -27,6 +29,7 @@ export class CreateTipoMantencionComponent implements OnInit {
     this.id=this.aRoute.snapshot.paramMap.get('id');} 
 
   ngOnInit(): void {
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
     this.esEditar();
   }
 
@@ -50,11 +53,17 @@ export class CreateTipoMantencionComponent implements OnInit {
     }
     this.loading=true;
     
+    this.afAuth.currentUser.then(user => {
+      if (user) {
+        tipoMantencion.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+      }
+
     this._tipoMantencionService.actualizarTipoMantencion(id, tipoMantencion).then(()=>{
       this.loading=false;
       this.toastr.info('El tipo fue modificado con exito!', 'Tipo modificada',{positionClass: 'toast-bottom-right'});
       this.router.navigate(['/listar-tipo-mantencion']);
     })
+  })
   }
 
   agregarTipoMantencion(){
@@ -64,6 +73,10 @@ export class CreateTipoMantencionComponent implements OnInit {
       fechaActualizacion: new Date(),
     }
     this.loading=true;
+    this.afAuth.currentUser.then(user => {
+      if (user) {
+        tipoMantencion.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+      }
     this._tipoMantencionService.agregarTipoMantencion(tipoMantencion).then(()=>{
       console.log('Tipo creado con exito');
       this.toastr.success('El tipo fue registrada con exito!', 'Tipo registrada',{positionClass: 'toast-bottom-right'});
@@ -73,6 +86,7 @@ export class CreateTipoMantencionComponent implements OnInit {
       console.log(error);
       this.loading=false;
     })
+  })
   }
 
   esEditar(){

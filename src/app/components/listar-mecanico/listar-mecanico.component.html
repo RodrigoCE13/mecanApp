@@ -10,23 +10,25 @@
 
             <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="mecanicos.length == 0">No hay datos para mostrar</h4>
 
-            <table *ngIf="mecanicos.length > 0" class="table mt-5" style="background: #EFEFEF;">
+            <table *ngIf="mecanicos.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
                 <thead class="bg-dark text-white">
                   <tr>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">#</th>
+                    <th>Nombre</th>
                     <th>Fono</th>
                     <th>Direccion</th>
                     <th>Tipo</th>
-                    <th>Modificar</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let mecanico of mecanicos">
-                    <th scope="row">{{ mecanico.nombre }}</th>
+                  <tr *ngFor="let mecanico of mecanicos; let i = index">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ mecanico.nombre }}</td>
                     <td>{{ mecanico.fono }}</td>
                     <td>{{ mecanico.direccion }}</td>
                     <td>{{ mecanico.tipoMecanico }}</td>
-                    <td>
+                    <td class="text-end">
                         <button [routerLink]="['/editar-mecanico/',mecanico.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                         <button (click)="eliminarMecanico(mecanico.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
                     </td>
