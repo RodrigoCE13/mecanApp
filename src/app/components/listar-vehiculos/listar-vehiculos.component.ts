@@ -20,9 +20,9 @@ export class ListarVehiculosComponent implements OnInit {
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
-    this.getVehiculos();
     this.getMarcas();
     this.getTipos();
+    this.getVehiculos();
   }
   
 
