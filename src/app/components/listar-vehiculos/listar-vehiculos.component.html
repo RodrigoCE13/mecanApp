@@ -33,7 +33,7 @@
                     <td class="text-end">
                         <button [routerLink]="['/editar-vehiculo/',vehiculo.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                         <button (click)="eliminarVehiculo(vehiculo.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                        <button class="btn btn-success me-2"><i class="fa-solid fa-dollar-sign"></i></button>
+                        <button routerLink="/valor-vehiculo" class="btn btn-success me-2"><i class="fa-solid fa-dollar-sign"></i></button>
                     </td>
                   </tr>
                 </tbody>

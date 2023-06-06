@@ -17,6 +17,7 @@ import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-v
 import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
 import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
 import { ListarTipoMantencionComponent } from './components/listar-tipo-mantencion/listar-tipo-mantencion.component';
+import { VerValorComponent } from './components/ver-valor/ver-valor.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'login', pathMatch:'full' },//redirecciona a login si no hay nada en la url
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'crear-vehiculo', component:CreateVehiculoComponent },
   { path: 'editar-vehiculo/:id', component:CreateVehiculoComponent },
   { path: 'listar-vehiculos', component:ListarVehiculosComponent },
+  { path: 'valor-vehiculo', component:VerValorComponent},
 
   { path:'**', redirectTo:'login', pathMatch:'full' }//redirecciona a login si no existe la ruta (siempre poner al final)
 ];

@@ -36,11 +36,21 @@ html,body{
     border-radius: 4px;
     padding: 0 1%;
 }
+.okMensaje{
+    color: white;
+    background: rgb(23, 163, 65);
+    border-radius: 4px;
+    padding: 0 1%;
+}
 
 .linkForm{
     color: deepskyblue;
 }
 .linkForm:hover{
     color:dodgerblue;
+}
+
+.container-fluid .row .contProxFecha{
+    background-color:#ffffff;
 }
 

@@ -34,6 +34,7 @@ import { ListarVehiculosComponent } from './components/listar-vehiculos/listar-v
 import { ListaTipoVehiculosComponent } from './components/lista-tipo-vehiculos/lista-tipo-vehiculos.component';
 import { ListarMarcasComponent } from './components/listar-marcas/listar-marcas.component';
 import { ListarTipoMantencionComponent } from './components/listar-tipo-mantencion/listar-tipo-mantencion.component';
+import { VerValorComponent } from './components/ver-valor/ver-valor.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ListarTipoMantencionComponent } from './components/listar-tipo-mantenci
     ListarVehiculosComponent,
     ListaTipoVehiculosComponent,
     ListarMarcasComponent,
-    ListarTipoMantencionComponent
+    ListarTipoMantencionComponent,
+    VerValorComponent
   ],
   imports: [
     BrowserModule,
