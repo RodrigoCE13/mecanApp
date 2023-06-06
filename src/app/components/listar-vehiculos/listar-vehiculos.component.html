@@ -19,6 +19,8 @@
                     <th>Modelo</th>
                     <th>Tipo</th>
                     <th>Año</th>
+                    <th>Valor</th>
+                    <th>Kilometraje</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -30,10 +32,12 @@
                     <td>{{ vehiculo.modelo }}</td>
                     <td>{{ getTipoNombre(vehiculo.tipoVehiculo) }}</td>
                     <td>{{ vehiculo.annio }}</td>
+                    <td>{{ vehiculo.precio }}</td>
+                    <td>{{ vehiculo.kilometraje }}</td>
                     <td class="text-end">
                         <button [routerLink]="['/editar-vehiculo/',vehiculo.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
                         <button (click)="eliminarVehiculo(vehiculo.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                        <button routerLink="/valor-vehiculo" class="btn btn-success me-2"><i class="fa-solid fa-dollar-sign"></i></button>
+                        <button [routerLink]="['/valor-vehiculo',vehiculo.id]" class="btn btn-success me-2"><i class="fa-solid fa-dollar-sign"></i></button>
                     </td>
                   </tr>
                 </tbody>

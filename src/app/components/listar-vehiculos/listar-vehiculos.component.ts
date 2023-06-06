@@ -72,8 +72,6 @@ export class ListarVehiculosComponent implements OnInit {
     return tipo ? tipo.nombre : '';
   }
 
-
-
   eliminarVehiculo(id:string){
     this._vehiculoServices.eliminarVehiculo(id).then(()=>{
       console.log('Vehiculo eliminado con exito');
