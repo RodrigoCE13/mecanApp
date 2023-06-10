@@ -58,7 +58,6 @@ export class DashboardComponent implements OnInit {
         mantencion.id = element.payload.doc.id;
         this.proximasMantenciones.push(mantencion);
       });
-      console.log(this.proximasMantenciones);
     });
   }
   getVehiculos() {
@@ -69,7 +68,6 @@ export class DashboardComponent implements OnInit {
         vehiculo.id = element.payload.doc.id;
         this.vehiculos.push(vehiculo);
       });
-      console.log(this.vehiculos);
     });
   }
   getTiposPrev(){
@@ -80,7 +78,6 @@ export class DashboardComponent implements OnInit {
         tipoPrev.id = element.payload.doc.id;
         this.tiposPrev.push(tipoPrev);
       });
-      console.log(this.tiposPrev);
     });
   }
   getMarcas() {
@@ -91,7 +88,6 @@ export class DashboardComponent implements OnInit {
         marca.id = element.payload.doc.id;
         this.marcas.push(marca);
       });
-      console.log(this.marcas);
     });
   }
   

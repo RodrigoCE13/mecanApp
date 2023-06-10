@@ -34,7 +34,6 @@ export class ListarVehiculosComponent implements OnInit {
         vehiculo.id = element.payload.doc.id;
         this.vehiculos.push(vehiculo);
       });
-      console.log(this.vehiculos);
     });
   }
 
@@ -46,7 +45,6 @@ export class ListarVehiculosComponent implements OnInit {
         marca.id = element.payload.doc.id;
         this.marcas.push(marca);
       });
-      console.log(this.marcas);
     });
   }
 
@@ -58,7 +56,6 @@ export class ListarVehiculosComponent implements OnInit {
         tipo.id = element.payload.doc.id;
         this.tipos.push(tipo);
       });
-      console.log(this.tipos);
     });
   }
 

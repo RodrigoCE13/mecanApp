@@ -1,14 +1,14 @@
 <body class="inicio">
     <app-header></app-header>
-    <div>
+    <div class="col-md-6 offset-md-3">
         <div class="m-5">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">Lista de mecanicos/talleres</h1>
+                    <h1 class="titulos">Lista de mecanicos/talleres</h1>
                 </div>
             </div>
 
-            <h4 style="color: #bbbbbb;" class="mt-5" *ngIf="mecanicos.length == 0">No hay datos para mostrar</h4>
+            <h4 class="mensajeTitulo mt-5" *ngIf="mecanicos.length == 0">No hay datos para mostrar</h4>
 
             <table *ngIf="mecanicos.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
                 <thead class="bg-dark text-white">
@@ -36,7 +36,7 @@
                 </tbody>
               </table>
               <div class="text-end">
-                <button class="btn btn-primary" routerLink="/crear-mecanico">Agregar nuevo</button>
+                <button class="btnPrincipal p-2 shadow" routerLink="/crear-mecanico">Agregar nuevo</button>
               </div>
         </div>
     </div>

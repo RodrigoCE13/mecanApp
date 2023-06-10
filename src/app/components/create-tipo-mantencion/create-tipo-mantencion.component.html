@@ -1,21 +1,21 @@
 <body class="inicio">
     <app-header></app-header>
     <div>
-        <div class="m-5">
+        <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">{{titulo}}un tipo de mantencion
+                    <h1 class="titulos">{{titulo}}un tipo de mantencion
                         <app-spinner *ngIf="loading"></app-spinner>
                     </h1>
                 </div>
                 <div class="mt-4">
                     <form [formGroup]="createTipoMantencion" (ngSubmit)="agregarEditar()">
-                        <label class="form-label mt-4" style="color: #EFEFEF;">Nombre de la mantencion</label>
-                        <input class="form-control" formControlName="nombre">
-                        <span *ngIf="submitted && createTipoMantencion.invalid" class="errorMensaje">Debe ingresar un tipo</span>
+                        <label class="form-label mt-4 titulos">Nombre de la mantencion *</label>
+                        <input class="form-control shadow" formControlName="nombre">
+                        <span *ngIf="submitted && createTipoMantencion.invalid" class="badge badge-danger">Debe ingresar un tipo</span>
                         <div class="mt-4">
-                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
-                            <button class="btn btn-outline-info" >Limpiar</button>
+                            <button class="btnAdd me-2 p-2">{{titulo}}</button>
+                            <button class="btnPrincipal p-2" routerLink="/listar-tipo-mantencion">Volver</button>
                         </div>
                     </form>
                 </div>

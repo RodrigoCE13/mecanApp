@@ -34,7 +34,6 @@ export class VerMantencionesComponent implements OnInit {
         mantencion.id = element.payload.doc.id;
         this.mantenciones.push(mantencion);
       });
-      console.log(this.mantenciones);
     });
   }
   getVehiculos(){
@@ -45,7 +44,6 @@ export class VerMantencionesComponent implements OnInit {
         vehiculo.id = element.payload.doc.id;
         this.vehiculos.push(vehiculo);
       });
-      console.log(this.vehiculos);
     });
   }
   getMecanicos(){
@@ -56,7 +54,6 @@ export class VerMantencionesComponent implements OnInit {
         mecanico.id = element.payload.doc.id;
         this.mecanicos.push(mecanico);
       });
-      console.log(this.mecanicos);
     });
   }
   getTiposPrev(){
@@ -67,7 +64,6 @@ export class VerMantencionesComponent implements OnInit {
         tipoPrev.id = element.payload.doc.id;
         this.tiposPrev.push(tipoPrev);
       });
-      console.log(this.tiposPrev);
     });
   }
   getTiposLegal(){
@@ -78,7 +74,6 @@ export class VerMantencionesComponent implements OnInit {
         tipoLegal.id = element.payload.doc.id;
         this.tiposLegal.push(tipoLegal);
       });
-      console.log(this.tiposLegal);
     });
   }
 
