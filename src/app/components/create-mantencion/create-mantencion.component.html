@@ -1,10 +1,10 @@
 <body class="inicio">
   <app-header></app-header>
   <div>
-    <div class="m-5">
+    <div class="mt-4 col-md-6 offset-md-3">
       <div class="row align-items-center mb-2">
         <div class="col">
-          <h1 class="text-white">
+          <h1 class="titulos">
             {{ titulo }}mantencion
             <app-spinner *ngIf="loading"></app-spinner>
           </h1>
@@ -14,10 +14,10 @@
           <form [formGroup]="createMantencion" (ngSubmit)="agregarEditar()">
             <div class="row mt-2">
               <div class="col">
-                <label class="form-label" style="color: #efefef"
+                <label class="form-label titulos"
                   >Vehiculo *</label
                 >
-                <select class="form-select" formControlName="vehiculo">
+                <select class="form-select shadow" formControlName="vehiculo">
                   <option value="" disabled selected>
                     Seleccione un vehiculo
                   </option>
@@ -31,37 +31,37 @@
                 </select>
                 <span
                   *ngIf="submitted && createMantencion.invalid"
-                  class="errorMensaje"
+                  class="badge badge-danger"
                   >Debe ingresar un vehiculo para la mantencion</span
                 >
               </div>
               <div class="col">
-                <label class="form-label" style="color: #efefef">Fecha *</label>
+                <label class="form-label titulos">Fecha *</label>
                 <input
                   type="date"
-                  class="form-control"
+                  class="form-control shadow"
                   formControlName="fecha"
                 />
                 <span
                   *ngIf="submitted && createMantencion.invalid"
-                  class="errorMensaje"
+                  class="badge badge-danger"
                   >Debe ingresar la fecha</span
                 >
               </div>
             </div>
             <div class="row mt-4">
                 <div class="col">
-                  <label class="form-label" style="color: #efefef">Seleccione el tipo de mantencion</label>
+                  <label class="form-label titulos">Seleccione el tipo de mantencion</label>
                     <div class="form-check">
                         <input
                           type="radio"
                           role="switch"
                           (change)="mostrarLegal()"
-                          class="form-check-input"
+                          class="form-check-input shadow"
                           id="legal"
                           name="mantencion"
                         />
-                        <label class="form-check-label" style="color: #efefef" for="legal">
+                        <label class="form-check-label titulos" for="legal">
                           Mantencion Legal </label
                         ><br />
                       </div>
@@ -70,27 +70,27 @@
                           type="radio"
                           role="switch"
                           (change)="mostrarPrev()"
-                          class="form-check-input"
+                          class="form-check-input shadow"
                           id="prev"
                           name="mantencion"
                         />
-                        <label class="form-check-label" style="color: #efefef" for="prev">
+                        <label class="form-check-label titulos" for="prev">
                           Mantencion Preventiva </label
                         ><br />
                       </div>
                   </div>
                   
                   <div class="col mt-2" *ngIf="mostrarTipoPrev">
-                    <label class="form-label" style="color: #efefef">Tipo de mantención preventiva</label>
-                    <select class="form-select" formControlName="tipoMantencionPreventiva">
+                    <label class="form-label titulos" >Tipo de mantención preventiva</label>
+                    <select class="form-select shadow" formControlName="tipoMantencionPreventiva">
                       <option value="" disabled selected>Seleccione un tipo</option>
                       <option *ngFor="let tipoP of tipoPrev" [value]="tipoP.id">{{ tipoP.nombre }}</option>
                     </select>
                   </div>
                   
                   <div class="col mt-2" *ngIf="mostrarTipoLegal">
-                    <label class="form-label" style="color: #efefef">Tipo de mantención legal</label>
-                    <select class="form-select" formControlName="tipoMantencionLegal">
+                    <label class="form-label titulos" >Tipo de mantención legal</label>
+                    <select class="form-select shadow" formControlName="tipoMantencionLegal">
                       <option value="" disabled selected>Seleccione un tipo</option>
                       <option *ngFor="let tipoL of tipoLegal" [value]="tipoL.id">{{ tipoL.nombre }}</option>
                     </select>
@@ -98,19 +98,19 @@
             </div>
             <div class="row mt-2">
               <div class="col">
-                <label class="form-label" style="color: #efefef">Costo *</label>
-                <input class="form-control" formControlName="costo" />
+                <label class="form-label titulos">Costo *</label>
+                <input class="form-control shadow" formControlName="costo" />
                 <span
                   *ngIf="submitted && createMantencion.invalid"
-                  class="errorMensaje"
+                  class="badge badge-danger"
                   >Debe ingresar el costo</span
                 >
               </div>
               <div class="col">
-                <label class="form-label" style="color: #efefef"
+                <label class="form-label titulos"
                   >Encargado *</label
                 >
-                <select class="form-select" formControlName="mecanico">
+                <select class="form-select shadow" formControlName="mecanico">
                   <option value="" disabled selected>
                     Seleccione un mecanico
                   </option>
@@ -123,22 +123,22 @@
                 </select>
                 <span
                   *ngIf="submitted && createMantencion.invalid"
-                  class="errorMensaje"
+                  class="badge badge-danger"
                   >Debe seleccionar un mecanico</span
                 >
               </div>
             </div>
             <div class="mt-2">
-              <label class="form-label" style="color: #efefef"
+              <label class="form-label titulos" 
                 >Descripcion *</label
               >
               <textarea
-                class="form-control"
+                class="form-control shadow"
                 formControlName="descripcion"
               ></textarea>
               <span
                   *ngIf="submitted && createMantencion.invalid"
-                  class="errorMensaje"
+                  class="badge badge-danger"
                   >Debe ingresar una descripcion</span
                 >
             </div>
@@ -149,32 +149,27 @@
                     type="checkbox"
                     role="switch"
                     (change)="mostrarProximaFecha()"
-                    class="form-check-input"
+                    class="form-check-input shadow"
                   />
-                  <label class="form-label" style="color: #efefef">
+                  <label class="form-label titulos" >
                     ¿Desea agregar una fecha para la proxima mantencion? </label
                   ><br />
                 </div>
               </div>
               <div class="col" *ngIf="mostrarProxFecha">
-                <label class="form-label" style="color: #efefef"
+                <label class="form-label titulos" 
                   >Fecha proxima mantencion</label
                 >
                 <input
                   type="date"
-                  class="form-control"
+                  class="form-control shadow"
                   formControlName="fechaProxMantencion"
                 />
               </div>
             </div>
             <div class="mt-3">
-              <button
-                class="btn me-2"
-                style="background: #f66b0e; color: #efefef"
-              >
-                {{ titulo }}
-              </button>
-              <button class="btn btn-outline-info">Limpiar</button>
+              <button class="btnAdd me-2 p-2">{{titulo}}</button>
+              <button class="btnPrincipal p-2" routerLink="/mantenciones">Volver</button>
             </div>
           </form>
         </div>

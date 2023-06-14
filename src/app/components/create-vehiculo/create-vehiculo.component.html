@@ -1,10 +1,10 @@
 <body class="inicio">
     <app-header></app-header>
     <div>
-        <div class="m-5">
+        <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">{{titulo}}vehiculo
+                    <h1 class="titulos">{{titulo}}vehiculo
                         <app-spinner *ngIf="loading"></app-spinner>
                     </h1>
                 </div>
@@ -12,57 +12,57 @@
                     <form [formGroup]="createVehiculo" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Patente *</label>
-                                <input class="form-control" formControlName="patente">
-                                <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Ingrese la patente del vehiculo</span>
+                                <label class="form-label titulos" >Patente *</label>
+                                <input class="form-control shadow" formControlName="patente">
+                                <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Tipo *</label>
-                                <select class="form-select" formControlName="tipoVehiculo">
+                                <label class="form-label titulos">Tipo *</label>
+                                <select class="form-select shadow" formControlName="tipoVehiculo">
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>
                                   </select>
-                                  <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Debe seleccionar un tipo</span>
+                                  <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Debe seleccionar un tipo</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label class="form-label mt-2" style="color: #EFEFEF;">Marca *</label>
-                                <select class="form-select" formControlName="marca">
+                                <label class="form-label mt-2 titulos">Marca *</label>
+                                <select class="form-select shadow" formControlName="marca">
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
                                   </select>
-                                  <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Debe seleccionar una marca</span>
+                                  <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Debe seleccionar una marca</span>
                             </div>
                             <div class="col align-self-end">
                                 <div class="">
-                                    <label class="text-white ">si no encuentra la marca, puede agregarla 
+                                    <label class="titulos">si no encuentra la marca, puede agregarla 
                                         <a routerLink="/crear-marca" class="linkForm">haciendo click aqui</a></label> 
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label class="form-label mt-2" style="color: #EFEFEF;">Modelo *</label>
-                            <input class="form-control" formControlName="modelo">
-                            <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Ingrese el modelo del vehiculo</span>
+                            <label class="form-label mt-2 titulos">Modelo *</label>
+                            <input class="form-control shadow" formControlName="modelo">
+                            <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese el modelo del vehiculo</span>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Precio de compra</label>
-                                <input class="form-control" formControlName="precio">
+                                <label class="form-label titulos">Precio de compra</label>
+                                <input class="form-control shadow" formControlName="precio">
                             </div>
                             <div class="col">
                                 <label class="form-label" style="color: #EFEFEF;">Año</label>
-                                <input class="form-control" formControlName="annio">
+                                <input class="form-control" formControlName="año">
                             </div>
                         </div>
                         <div>
-                            <label class="form-label mt-2" style="color: #EFEFEF;">Kilometraje</label>
-                            <input class="form-control" formControlName="kilometraje">
+                            <label class="form-label mt-2 titulos">Kilometraje</label>
+                            <input class="form-control shadow" formControlName="kilometraje">
                         </div>
                         <div class="mt-4">
-                            <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">{{titulo}}</button>
-                            <button class="btn btn-outline-info" >Limpiar</button>
+                            <button class="btnAdd me-2 p-2">{{titulo}}</button>
+                            <button class="btnPrincipal p-2" routerLink="/listar-vehiculos" >Volver</button>
                         </div>
                     </form>
                 </div>

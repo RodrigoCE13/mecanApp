@@ -1,11 +1,11 @@
 <body class="inicio">
     <app-header></app-header>
-    <div>
+    <div class="col-md-6 offset-md-3">
         <div class="m-5">
             <div class="mt-4">
                 <div class="row">
-                    <h1 class="text-white mb-2">Lista de vehiculos</h1>
-                    <h2 style="color: #bbbbbb;" *ngIf="mantenciones.length == 0">No posee ninguna mantencion</h2>
+                    <h1 class="titulos">Lista de vehiculos</h1>
+                    <h4 class="mensajeTitulo mt-5" *ngIf="mantenciones.length == 0">No posee ninguna mantencion</h4>
                     <div class="col mt-4">
                         <table *ngIf="mantenciones.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
                             <thead class="bg-dark text-white">
@@ -35,7 +35,7 @@
                             </tbody>
                           </table>
                             <div class="text-end">
-                                <button class="btn btn-primary" routerLink="/crear-mantencion">Ingresar mantencion</button>
+                                <button class="btnPrincipal p-2 shadow" routerLink="/crear-mantencion">Ingresar mantencion</button>
                         </div>
                     </div>
                 </div>

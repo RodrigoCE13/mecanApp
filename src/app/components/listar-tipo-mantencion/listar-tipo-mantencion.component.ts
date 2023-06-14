@@ -30,7 +30,6 @@ export class ListarTipoMantencionComponent implements OnInit {
           ...element.payload.doc.data()
         })
       });
-      console.log(this.tiposMantencion);
     });
   }
   eliminarTiposMantencion(id:string){

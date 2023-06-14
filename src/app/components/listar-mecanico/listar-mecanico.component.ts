@@ -32,7 +32,6 @@ export class ListarMecanicoComponent implements OnInit {
           ...element.payload.doc.data()//con ... accedemos a los datos del documento
         })
       });
-      console.log(this.mecanicos);
     });
   }
 

@@ -31,7 +31,6 @@ export class ListarMarcasComponent implements OnInit {
           ...element.payload.doc.data()
         })
       });
-      console.log(this.marcas);
     });
   }
 
