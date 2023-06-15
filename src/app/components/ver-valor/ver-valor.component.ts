@@ -14,13 +14,24 @@ export class VerValorComponent implements OnInit {
   loading=false;
   id:string| null;
   precio=0;
-  preciofinal=0;
   annio: number = 0;
+
+  preciofinalBj=0;
+  preciofinalMd=0;
+  preciofinalAl=0;
+
+  depreciacionBj=0.9;
+  depreciacionMd=0.85;
+  depreciacionAl=0.8;
+
+  devaluacionBj=0.0;
+  devaluacionMd=0.0;
+  devaluacionAl=0.0;
+
+  anniosdpre=0;
   patente='';
   modelo='';
-  depreciacionMd=0.85;
-  devaluacion=0.0;
-  ad=0;
+
   fecha = new Date();
   fechaactual = this.fecha.getFullYear();
 
@@ -34,7 +45,7 @@ export class VerValorComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.toastr.info('Hola :)', 'Importante', { positionClass: 'toast-bottom-right' });
+    //this.toastr.info('Hola :)', 'Importante', { positionClass: 'toast-bottom-right' });
     this.cargarVehiculo();
   }
 
@@ -48,41 +59,102 @@ export class VerValorComponent implements OnInit {
         this.annio = data.payload.data()['annio'];
         this.modelo = data.payload.data()['modelo'];
         this.patente = data.payload.data()['patente'];
-        this.depreciacionVehiculoMedia(this.annio, this.precio)
+        this.depreciacionVehiculoBaja(this.annio, this.precio);
+        this.depreciacionVehiculoMedia(this.annio, this.precio);
+        this.depreciacionVehiculoAlta(this.annio, this.precio);
       })
     }
   }
 
-
   depreciacionVehiculoMedia(annio:number, precio:number){
-    this.ad = parseInt(this.fechaactual.toString()) - annio;
+    this.anniosdpre = parseInt(this.fechaactual.toString()) - annio;
 
-    console.log(this.ad)
-    if(this.ad <= 1){
-      this.devaluacion = 0.24 * precio;
-      this.preciofinal = precio - this.devaluacion;
-      this.devaluacion = Math.trunc(this.devaluacion);
-      this.preciofinal = Math.trunc(this.preciofinal);
+    if(this.anniosdpre <= 1){
+      this.devaluacionMd = 0.24 * precio;
+      this.preciofinalMd = precio - this.devaluacionMd;
+      this.devaluacionMd = Math.trunc(this.devaluacionMd);
+      this.preciofinalMd = Math.trunc(this.preciofinalMd);
     }else{
-      for(let i = 1; i < (this.ad - 1); i++){
+      for(let i = 1; i < (this.anniosdpre - 1); i++){
         this.depreciacionMd = this.depreciacionMd * 0.85;
       }
 
-        this.preciofinal = (this.depreciacionMd * 0.76) * precio;
-        this.devaluacion = precio - this.preciofinal;
+        this.preciofinalMd = (this.depreciacionMd * 0.76) * precio;
+        this.devaluacionMd = precio - this.preciofinalMd;
         
-        if(this.preciofinal <= (precio * 0.1)){
+        if(this.preciofinalMd <= (precio * 0.1)){
 
-          this.preciofinal = precio * 0.1;
-          this.devaluacion = precio * 0.9;
-          this.devaluacion = Math.trunc(this.devaluacion);
-          this.preciofinal = Math.trunc(this.preciofinal);
+          this.preciofinalMd = precio * 0.1;
+          this.devaluacionMd = precio * 0.9;
+          this.devaluacionMd = Math.trunc(this.devaluacionMd);
+          this.preciofinalMd = Math.trunc(this.preciofinalMd);
         }
         else{
-          this.devaluacion = Math.trunc(this.devaluacion);
-          this.preciofinal = Math.trunc(this.preciofinal);
+          this.devaluacionMd = Math.trunc(this.devaluacionMd);
+          this.preciofinalMd = Math.trunc(this.preciofinalMd);
         }
     }
   }
+
+  depreciacionVehiculoBaja(annio:number, precio:number){
+    this.anniosdpre = parseInt(this.fechaactual.toString()) - annio;
+
+    if(this.anniosdpre <= 1){
+      this.devaluacionBj = 0.16 * precio;
+      this.preciofinalBj = precio - this.devaluacionBj;
+      this.devaluacionBj = Math.trunc(this.devaluacionBj);
+      this.preciofinalBj = Math.trunc(this.preciofinalBj);
+    }else{
+      for(let i = 1; i < (this.anniosdpre - 1); i++){
+        this.depreciacionBj = this.depreciacionBj * 0.9;
+      }
+
+        this.preciofinalBj = (this.depreciacionBj * 0.84) * precio;
+        this.devaluacionBj = precio - this.preciofinalBj;
+        
+        if(this.preciofinalBj <= (precio * 0.1)){
+
+          this.preciofinalBj = precio * 0.1;
+          this.devaluacionBj = precio * 0.9;
+          this.devaluacionBj = Math.trunc(this.devaluacionBj);
+          this.preciofinalBj = Math.trunc(this.preciofinalBj);
+        }
+        else{
+          this.devaluacionBj = Math.trunc(this.devaluacionBj);
+          this.preciofinalBj = Math.trunc(this.preciofinalBj);
+        }
+    }
+  }
+
+  depreciacionVehiculoAlta(annio:number, precio:number){
+    this.anniosdpre = parseInt(this.fechaactual.toString()) - annio;
+
+    if(this.anniosdpre <= 1){
+      this.devaluacionAl = 0.32 * precio;
+      this.preciofinalAl = precio - this.devaluacionAl;
+      this.devaluacionAl = Math.trunc(this.devaluacionAl);
+      this.preciofinalAl = Math.trunc(this.preciofinalAl);
+    }else{
+      for(let i = 1; i < (this.anniosdpre - 1); i++){
+        this.depreciacionAl = this.depreciacionAl * 0.8;
+      }
+
+        this.preciofinalAl = (this.depreciacionAl * 0.68) * precio;
+        this.devaluacionAl = precio - this.preciofinalAl;
+        
+        if(this.preciofinalAl <= (precio * 0.1)){
+
+          this.preciofinalAl = precio * 0.1;
+          this.devaluacionAl = precio * 0.9;
+          this.devaluacionAl = Math.trunc(this.devaluacionAl);
+          this.preciofinalAl = Math.trunc(this.preciofinalAl);
+        }
+        else{
+          this.devaluacionAl = Math.trunc(this.devaluacionAl);
+          this.preciofinalAl = Math.trunc(this.preciofinalAl);
+        }
+    }
+  }
+  
 
 }
