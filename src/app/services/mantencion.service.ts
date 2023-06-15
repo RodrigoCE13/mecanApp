@@ -15,18 +15,63 @@ export class MantencionService {
     return this.firestore.collection('mantencion').add(mantencion);
   }
   //fk
+ //getVehiculos(): Observable<any>{
+ //  return this.firestore.collection('vehiculo').snapshotChanges(); 
+ //}
+
   getVehiculos(): Observable<any>{
-    return this.firestore.collection('vehiculo').snapshotChanges(); 
+    return this.afAuth.authState.pipe(
+      filter(user=>!!user),
+      take(1),
+      switchMap(user=>{
+        const uid=user?.uid;
+        const queryFn:QueryFn=ref=>ref
+        .where('userId','==',uid)
+        .orderBy('fechaCreacion','asc');
+        return this.firestore.collection('vehiculo',queryFn).snapshotChanges();
+      })
+    )
   }
+
+ //getMecanicos(): Observable<any>{
+ //  return this.firestore.collection('mecanicos').snapshotChanges(); 
+ //}
+
   getMecanicos(): Observable<any>{
-    return this.firestore.collection('mecanicos').snapshotChanges(); 
+    return this.afAuth.authState.pipe(
+      filter(user=>!!user),
+      take(1),
+      switchMap(user=>{
+        const uid=user?.uid;
+        const queryFn:QueryFn=ref=>ref
+        .where('userId','==',uid)
+        .orderBy('fechaCreacion','asc');
+        return this.firestore.collection('mecanicos',queryFn).snapshotChanges();
+      })
+    )
   }
+
   getTipoLegal(): Observable<any>{
     return this.firestore.collection('tipoMantencionLegal').snapshotChanges(); 
   }
+  //getTipoPrev(): Observable<any>{
+  //  return this.firestore.collection('tipoMantencionPreventiva').snapshotChanges(); 
+  //}
+
   getTipoPrev(): Observable<any>{
-    return this.firestore.collection('tipoMantencionPreventiva').snapshotChanges(); 
+    return this.afAuth.authState.pipe(
+      filter(user=>!!user),
+      take(1),
+      switchMap(user=>{
+        const uid=user?.uid;
+        const queryFn:QueryFn=ref=>ref
+        .where('userId','==',uid)
+        .orderBy('fechaCreacion','asc');
+        return this.firestore.collection('tipoMantencionPreventiva',queryFn).snapshotChanges();
+      })
+    )
   }
+
   getMarcas(): Observable<any>{
     return this.firestore.collection('marcas').snapshotChanges(); 
   }
