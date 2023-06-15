@@ -5,41 +5,41 @@
         <div class="col mb-5 text-center">
             
           <div class="deva1 mt-3" *ngIf="tipoDepreciacion === 'baja'">
-            <h4 class="titulos">Depreciacion baja</h4>
-            <h1 class="titulos">El valor de vehiculo es: $6000000</h1>
-            <h4 class="titulos">DKWW90 - Ford Focus 2012</h4>
+            <h4 class="titulos">Depreciacion Baja</h4>
+            <h1 class="titulos">El valor del vehiculo estimado es: ${{preciofinalBj}}</h1>
+            <h4 class="titulos">{{patente}} - {{modelo}} {{annio}}</h4>
             <p class="titulos">
-              El precio inicial de compra fue<br> <span class="okMensaje">$8000000</span><br>
-              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">$2000000</span>
+              El precio inicial de compra fue<br> <span class="okMensaje">${{precio}}</span><br>
+              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">${{devaluacionBj}}</span>
             </p>
           </div>
           
           <div class="deva2 mt-3" *ngIf="tipoDepreciacion === 'media'">
-            <h4 class="titulos">Depreciacion media</h4>
-            <h1 class="titulos">El valor de vehiculo es: $6000000</h1>
-            <h4 class="titulos">DKWW90 - Ford Focus 2012</h4>
+            <h4 class="titulos">Depreciacion Media</h4>
+            <h1 class="titulos">El valor del vehiculo estimado es: ${{preciofinalMd}}</h1>
+            <h4 class="titulos">{{patente}} - {{modelo}} {{annio}}</h4>
             <p class="titulos">
-              El precio inicial de compra fue<br> <span class="okMensaje">$8000000</span><br>
-              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">$2000000</span>
+              El precio inicial de compra fue<br> <span class="okMensaje">${{precio}}</span><br>
+              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">${{devaluacionMd}}</span>
             </p>
           </div>
           
           <div class="deva3 mt-3" *ngIf="tipoDepreciacion === 'alta'">
-            <h4 class="titulos">Depreciacion alta</h4>
-            <h1 class="titulos">El valor de vehiculo es: $6000000</h1>
-            <h4 class="titulos">DKWW90 - Ford Focus 2012</h4>
+            <h4 class="titulos">Depreciacion Alta</h4>
+            <h1 class="titulos">El valor del vehiculo estimado es: ${{preciofinalAl}}</h1>
+            <h4 class="titulos">{{patente}} - {{modelo}} {{annio}}</h4>
             <p class="titulos">
-              El precio inicial de compra fue<br> <span class="okMensaje">$8000000</span><br>
-              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">$2000000</span>
+              El precio inicial de compra fue<br> <span class="okMensaje">${{precio}}</span><br>
+              Hasta la fecha actual se devaluo en<br> <span class="errorMensaje">${{devaluacionAl}}</span>
             </p>
           </div>
           
           <div class="col-md-6 offset-md-3">
             <select class="form-select shadow text-center" (change)="mostrarDiv($event)">
               <option value="" disabled selected>Seleccione un tipo de depreciación</option>
-              <option value="baja">baja</option>
-              <option value="media">media</option>
-              <option value="alta">alta</option>
+              <option value="baja">Baja</option>
+              <option value="media">Media</option>
+              <option value="alta">Alta</option>
             </select>
           </div>
           
