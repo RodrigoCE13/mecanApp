@@ -36,6 +36,9 @@ export class DashboardComponent implements OnInit {
     this.checkUserAuthentication();
   }
 
+  getCurrentDate(): Date {//<-- Función para obtener la fecha actual
+    return new Date();
+  }
   
   checkUserAuthentication(): void {
     this.afAuth.authState.subscribe(user => {

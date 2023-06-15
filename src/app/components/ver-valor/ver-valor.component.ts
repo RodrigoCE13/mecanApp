@@ -15,6 +15,7 @@ export class VerValorComponent implements OnInit {
   id:string| null;
   precio=0;
   annio: number = 0;
+  tipoDepreciacion: string="";
 
   preciofinalBj=0;
   preciofinalMd=0;
@@ -157,4 +158,7 @@ export class VerValorComponent implements OnInit {
   }
   
 
+  mostrarDiv(event: any) {
+    this.tipoDepreciacion = event.target.value;
+  }
 }
