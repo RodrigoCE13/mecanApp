@@ -15,12 +15,10 @@ export class VerValorComponent implements OnInit {
   id:string| null;
   precio=0;
   preciofinal=0;
-  annio=0;
+  annio: number = 0;
   patente='';
   modelo='';
-  depreciaciona1=0.84;
-  depreciaciona1c=0.0;
-  depreciacionas=0.9;
+  depreciacionMd=0.85;
   devaluacion=0.0;
   ad=0;
   fecha = new Date();
@@ -50,33 +48,40 @@ export class VerValorComponent implements OnInit {
         this.annio = data.payload.data()['annio'];
         this.modelo = data.payload.data()['modelo'];
         this.patente = data.payload.data()['patente'];
-        this.depreciacionVehiculo(this.annio, this.precio)
+        this.depreciacionVehiculoMedia(this.annio, this.precio)
       })
     }
   }
 
 
-  depreciacionVehiculo(annio:number, precio:number){
+  depreciacionVehiculoMedia(annio:number, precio:number){
     this.ad = parseInt(this.fechaactual.toString()) - annio;
+
     console.log(this.ad)
     if(this.ad <= 1){
-      this.devaluacion = this.depreciaciona1 * precio;
+      this.devaluacion = 0.24 * precio;
       this.preciofinal = precio - this.devaluacion;
       this.devaluacion = Math.trunc(this.devaluacion);
       this.preciofinal = Math.trunc(this.preciofinal);
     }else{
-      for(let i = 1; i <= (this.ad - 1); i++){
-        this.depreciacionas = this.depreciacionas * this.depreciacionas;
+      for(let i = 1; i < (this.ad - 1); i++){
+        this.depreciacionMd = this.depreciacionMd * 0.85;
       }
-      if(this.depreciacionas === 0){
-        this.preciofinal = 0.10 * precio;
-        this.devaluacion = precio * 0.9;
-      }else{
-        this.devaluacion = (this.depreciacionas * this.depreciaciona1) * precio;
-        this.preciofinal = precio - this.devaluacion;
-        this.devaluacion = Math.trunc(this.devaluacion);
-        this.preciofinal = Math.trunc(this.preciofinal);
-      }
+
+        this.preciofinal = (this.depreciacionMd * 0.76) * precio;
+        this.devaluacion = precio - this.preciofinal;
+        
+        if(this.preciofinal <= (precio * 0.1)){
+
+          this.preciofinal = precio * 0.1;
+          this.devaluacion = precio * 0.9;
+          this.devaluacion = Math.trunc(this.devaluacion);
+          this.preciofinal = Math.trunc(this.preciofinal);
+        }
+        else{
+          this.devaluacion = Math.trunc(this.devaluacion);
+          this.preciofinal = Math.trunc(this.preciofinal);
+        }
     }
   }
 
