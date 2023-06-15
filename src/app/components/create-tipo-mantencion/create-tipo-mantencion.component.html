@@ -4,13 +4,13 @@
         <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="titulos">{{titulo}}un tipo de mantencion
+                    <h1 class="titulos">{{titulo}}un tipo de mantención
                         <app-spinner *ngIf="loading"></app-spinner>
                     </h1>
                 </div>
                 <div class="mt-4">
                     <form [formGroup]="createTipoMantencion" (ngSubmit)="agregarEditar()">
-                        <label class="form-label mt-4 titulos">Nombre de la mantencion *</label>
+                        <label class="form-label mt-4 titulos">Nombre de la mantención *</label>
                         <input class="form-control shadow" formControlName="nombre">
                         <span *ngIf="submitted && createTipoMantencion.invalid" class="badge badge-danger">Debe ingresar un tipo</span>
                         <div class="mt-4">
