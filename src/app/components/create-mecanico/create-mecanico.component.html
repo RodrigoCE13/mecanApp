@@ -14,8 +14,9 @@
                     <form [formGroup]="createMecanico" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
+                                <!-- Se agrega validación maxLenght para Nombre [En la BD de 100 aca de 50]-->
                                 <label class="form-label titulos">Nombre *</label>
-                                <input class="form-control shadow" formControlName="nombre">
+                                <input class="form-control shadow" formControlName="nombre" pattern="\d*" maxlength="50">
                                 <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un nombre</span>
                             </div>
                             <div class="col">
@@ -26,12 +27,15 @@
                                 <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe seleccionar un tipo</span>
                             </div>
                         </div>
+                        <!-- Se agrega validación maxLenght para Dirección [En la BD de 100 aca de 50]-->
                         <label class="form-label mt-2 titulos">Dirección</label>
                         <input class="form-control shadow" formControlName="direccion">
                         <div class="row">
+                            <!-- Se agrega validación maxLenght para fono -->
                             <div class="col mt-2">
                                 <label class="form-label titulos">fono</label>
-                                <input class="form-control shadow" formControlName="fono">
+                                <input class="form-control shadow" formControlName="fono" pattern="\d*" maxlength="12" minlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un número válido</span>
                             </div>
                             <div class="col"></div>
                         </div>
