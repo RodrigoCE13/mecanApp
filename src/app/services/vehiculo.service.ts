@@ -37,6 +37,20 @@ export class VehiculoService {
     return this.firestore.collection('tipoVehiculo').snapshotChanges(); 
   }
 
+  // getTipos(): Observable<any>{
+  //   return this.afAuth.authState.pipe(
+  //     filter(user=>!!user),
+  //     take(1),
+  //     switchMap(user=>{
+  //       const uid=user?.uid;
+  //       const queryFn:QueryFn=ref=>ref
+  //       .where('userId','==',uid)
+  //       .orderBy('fechaCreacion','asc');
+  //       return this.firestore.collection('tipoVehiculo',queryFn).snapshotChanges();
+  //     })
+  //   )
+  // }
+
   //obtener
   //getVehiculos(): Observable<any>{
   //  return this.firestore.collection('vehiculo',ref => ref.orderBy('fechaCreacion','asc')).snapshotChanges(); 

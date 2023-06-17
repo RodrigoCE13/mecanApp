@@ -4,7 +4,7 @@
         <div class="m-5">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="titulos">Lista de mecanicos/talleres</h1>
+                    <h1 class="titulos">Lista de mecánicos/talleres</h1>
                 </div>
             </div>
 
@@ -12,32 +12,32 @@
 
             <table *ngIf="mecanicos.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
                 <thead class="bg-dark text-white">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th>Nombre</th>
-                    <th>Fono</th>
-                    <th>Direccion</th>
-                    <th>Tipo</th>
-                    <th></th>
-                  </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>Nombre</th>
+                        <th>Fono</th>
+                        <th>Dirección</th>
+                        <th>Tipo</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let mecanico of mecanicos; let i = index">
-                    <th scope="row">{{ i+1 }}</th>
-                    <td>{{ mecanico.nombre }}</td>
-                    <td>{{ mecanico.fono }}</td>
-                    <td>{{ mecanico.direccion }}</td>
-                    <td>{{ mecanico.tipoMecanico }}</td>
-                    <td class="text-end">
-                        <button [routerLink]="['/editar-mecanico/',mecanico.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
-                        <button (click)="eliminarMecanico(mecanico.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                  </tr>
+                    <tr *ngFor="let mecanico of mecanicos; let i = index">
+                        <th scope="row">{{ i+1 }}</th>
+                        <td>{{ mecanico.nombre }}</td>
+                        <td>{{ mecanico.fono }}</td>
+                        <td>{{ mecanico.direccion }}</td>
+                        <td>{{ mecanico.tipoMecanico }}</td>
+                        <td class="text-end">
+                            <button [routerLink]="['/editar-mecanico/',mecanico.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                            <button (click)="eliminarMecanico(mecanico.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
                 </tbody>
-              </table>
-              <div class="text-end">
+            </table>
+            <div class="text-end">
                 <button class="btnPrincipal p-2 shadow" routerLink="/crear-mecanico">Agregar nuevo</button>
-              </div>
+            </div>
         </div>
     </div>
 </body>

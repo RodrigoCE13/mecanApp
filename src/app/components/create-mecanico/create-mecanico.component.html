@@ -4,39 +4,43 @@
         <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="titulos">{{titulo}}mecanico/taller
+                    <h1 class="titulos">{{titulo}}mecánico/taller
                         <app-spinner *ngIf="loading"></app-spinner>
                     </h1>
-                    
+
                 </div>
                 <div class="mt-4">
-                    
+
                     <form [formGroup]="createMecanico" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label titulos" >Nombre *</label>
-                                <input class="form-control shadow" formControlName="nombre">
+                                <!-- Se agrega validación maxLenght para Nombre [En la BD de 100 aca de 50]-->
+                                <label class="form-label titulos">Nombre *</label>
+                                <input class="form-control shadow" formControlName="nombre" pattern="\d*" maxlength="50">
                                 <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un nombre</span>
                             </div>
                             <div class="col">
-                                <label class="form-label titulos" >Tipo de mecanico *</label>
-                                <select class="form-select shadow" formControlName="tipoMecanico" >
+                                <label class="form-label titulos">Tipo de mecánico *</label>
+                                <select class="form-select shadow" formControlName="tipoMecanico">
                                     <option [value]="item" *ngFor="let item of tipo">{{ item }}</option>
                                 </select>
                                 <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe seleccionar un tipo</span>
                             </div>
                         </div>
-                        <label class="form-label mt-2 titulos" >Direccion</label>
+                        <!-- Se agrega validación maxLenght para Dirección [En la BD de 100 aca de 50]-->
+                        <label class="form-label mt-2 titulos">Dirección</label>
                         <input class="form-control shadow" formControlName="direccion">
                         <div class="row">
+                            <!-- Se agrega validación maxLenght para fono -->
                             <div class="col mt-2">
-                                <label class="form-label titulos" >fono</label>
-                                <input class="form-control shadow" formControlName="fono">
+                                <label class="form-label titulos">fono</label>
+                                <input class="form-control shadow" formControlName="fono" pattern="\d*" maxlength="12" minlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un número válido</span>
                             </div>
                             <div class="col"></div>
                         </div>
 
- 
+
                         <div class="mt-4">
                             <button class="btnAdd me-2 p-2">{{titulo}}</button>
                             <button class="btnPrincipal p-2" routerLink="/listar-mecanicos">Volver</button>
