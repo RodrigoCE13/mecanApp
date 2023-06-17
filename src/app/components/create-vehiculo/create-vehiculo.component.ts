@@ -75,8 +75,6 @@ export class CreateVehiculoComponent implements OnInit {
     
   }
 
-  
-
   editarVehiculo(id: string) {
     const vehiculo: any = {
       patente: this.createVehiculo.value.patente,
@@ -135,7 +133,6 @@ export class CreateVehiculoComponent implements OnInit {
       });
     });
   }
-
   esEditar(){
     if(this.id !== null){
       this.titulo='Editar ';
@@ -155,6 +152,4 @@ export class CreateVehiculoComponent implements OnInit {
       })
     }
   }
-
-
 }

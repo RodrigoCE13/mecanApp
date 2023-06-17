@@ -14,7 +14,7 @@
                             <div class="col">
                                 <!-- Se agrega validación maxLenght para patente -->
                                 <label class="form-label titulos">Patente *</label>
-                                <input class="form-control shadow" formControlName="patente" pattern="\d*" maxlength="8">
+                                <input class="form-control shadow" formControlName="patente" maxlength="8">
                                 <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
@@ -43,27 +43,28 @@
                             </div>
                         </div>
                         <div>
+                            <!-- Se agrega validación maxLenght para precio de Modelo-->
                             <label class="form-label mt-2 titulos">Modelo *</label>
-                            <input class="form-control shadow" formControlName="modelo">
+                            <input class="form-control shadow" formControlName="modelo" maxlength="50">
                             <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese el modelo del vehiculo</span>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <!-- Se agrega validación maxLenght para precio de compra [En la BD está de 10, acá de 9]-->
                                 <label class="form-label titulos">Precio de compra</label>
-                                <input class="form-control shadow" formControlName="precio" pattern="\d*" maxlength="9" minlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input class="form-control shadow" formControlName="precio" maxlength="9" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </div>
                             <div class="col">
                                 <!-- Se agrega validación maxLenght para año -->
                                 <label class="form-label titulos">Año</label>
-                                <input class="form-control shadow" formControlName="año" pattern="\d*" maxlength="4" minlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input class="form-control shadow" formControlName="año" maxlength="4" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                 <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Debe ingresar un año válido</span>
                             </div>
                         </div>
                         <div>
                             <!-- Se agrega validación maxLenght para kilometraje [En la BD está de 10, acá de 6]-->
                             <label class="form-label mt-2 titulos">Kilometraje</label>
-                            <input class="form-control shadow" formControlName="kilometraje" pattern="\d*" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            <input class="form-control shadow" formControlName="kilometraje" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                         </div>
                         <div class="mt-4">
                             <button class="btnAdd me-2 p-2">{{titulo}}</button>
