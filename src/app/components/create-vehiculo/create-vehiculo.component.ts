@@ -101,7 +101,6 @@ export class CreateVehiculoComponent implements OnInit {
       });
     });
   }
-
   agregarVehiculo() {
     const vehiculo: any = {
       patente: this.createVehiculo.value.patente,
@@ -115,9 +114,18 @@ export class CreateVehiculoComponent implements OnInit {
       fechaActualizacion: new Date(),
     };
   
+    const yearActual = new Date().getFullYear();
+    const yearIngresado = parseInt(vehiculo.año);
+  
+    if (yearIngresado > yearActual) {
+      console.log('El año ingresado no puede ser mayor al año actual')
+      this.toastr.error('El año ingresado no puede ser mayor al actual'), { positionClass: 'toast-bottom-right' };
+      return;
+    }
+  
     this.loading = true;
   
-    this.afAuth.currentUser.then(user => {
+    this.afAuth.currentUser.then((user) => {
       if (user) {
         vehiculo.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
       }
@@ -130,9 +138,41 @@ export class CreateVehiculoComponent implements OnInit {
       }).catch(error => {
         console.log(error);
         this.loading = false;
-      });
+        });
     });
   }
+
+  // agregarVehiculo() {
+  //   const vehiculo: any = {
+  //     patente: this.createVehiculo.value.patente,
+  //     modelo: this.createVehiculo.value.modelo,
+  //     precio: this.createVehiculo.value.precio,
+  //     año: this.createVehiculo.value.año,
+  //     marca: this.createVehiculo.value.marca,
+  //     tipoVehiculo: this.createVehiculo.value.tipoVehiculo,
+  //     kilometraje: this.createVehiculo.value.kilometraje,
+  //     fechaCreacion: new Date(),
+  //     fechaActualizacion: new Date(),
+  //   };
+  
+  //   this.loading = true;
+  
+  //   this.afAuth.currentUser.then(user => {
+  //     if (user) {
+  //       vehiculo.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+  //     }
+  
+  //     this._vehiculoService.agregarVehiculo(vehiculo).then(() => {
+  //       console.log('Vehiculo creado con exito');
+  //       this.toastr.success('El vehiculo fue registrado con exito!', 'Vehiculo registrado', { positionClass: 'toast-bottom-right' });
+  //       this.loading = false;
+  //       this.router.navigate(['/listar-vehiculos']);
+  //     }).catch(error => {
+  //       console.log(error);
+  //       this.loading = false;
+  //     });
+  //   });
+  // }
   esEditar(){
     if(this.id !== null){
       this.titulo='Editar ';
