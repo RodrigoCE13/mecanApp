@@ -18,7 +18,7 @@
                                 <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Tipo *</label>
+                                <label class="form-label titulos">Tipo *</label>
                                 <select class="form-select" formControlName="tipoVehiculo">
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>

@@ -68,31 +68,71 @@ export class CreateMarcaComponent implements OnInit {
     })
   }
 
-  agregarMarca(){
-    const marca:any={
-      nombre: this.createMarca.value.nombre,
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date(),
-    }
-    this.loading=true;
+  // agregarMarca(){
+  //   const marca:any={
+  //     nombre: this.createMarca.value.nombre,
+  //     fechaCreacion: new Date(),
+  //     fechaActualizacion: new Date(),
+  //   }
+  //   this.loading=true;
 
-    this.afAuth.currentUser.then(user=>{
-      if(user){
-        marca.userId=user.uid;
+  //   this.afAuth.currentUser.then(user=>{
+  //     if(user){
+  //       marca.userId=user.uid;
+  //     }
+
+  //     this._marcaService.agregarMarca(marca).then(()=>{
+  //      console.log('Marca creado con exito');
+  //       this.toastr.success('La marca fue registrada con exito!', 'Marca registrada',{positionClass: 'toast-bottom-right'});
+  //       this.loading=false;
+  //       this.router.navigate(['/listar-marcas']);
+  //     }).catch(error=>{
+  //       console.log(error);
+  //       this.loading=false;
+  //     })
+  //   })
+  // }
+  agregarMarca() {
+    const nombreMarca = this.createMarca.value.nombre.toLowerCase();
+  
+    // Realizar la validación
+    this._marcaService.verificarExistenciaMarca(nombreMarca).then((existe) => {
+      if (existe) {
+        // La marca ya existe
+        this.toastr.error('Ya existe una marca con ese nombre', 'Error', { positionClass: 'toast-bottom-right' });
+      } else {
+        // La marca no existe, se puede guardar
+        const marca: any = {
+          nombre: nombreMarca,
+          fechaCreacion: new Date(),
+          fechaActualizacion: new Date(),
+        };
+  
+        this.loading = true;
+  
+        this.afAuth.currentUser.then((user) => {
+          if (user) {
+            marca.userId = user.uid;
+          }
+  
+          this._marcaService.agregarMarca(marca).then(() => {
+            console.log('Marca creada con éxito');
+            this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada', {
+              positionClass: 'toast-bottom-right',
+            });
+            this.loading = false;
+            this.router.navigate(['/listar-marcas']);
+          }).catch((error) => {
+            console.log(error);
+            this.loading = false;
+          });
+        });
       }
-
-      this._marcaService.agregarMarca(marca).then(()=>{
-       console.log('Marca creado con exito');
-        this.toastr.success('La marca fue registrada con exito!', 'Marca registrada',{positionClass: 'toast-bottom-right'});
-        this.loading=false;
-        this.router.navigate(['/listar-marcas']);
-      }).catch(error=>{
-        console.log(error);
-        this.loading=false;
-      })
-    })
+    }).catch((error) => {
+      console.log(error);
+    });
   }
-
+  
   esEditar(){
     if(this.id !== null){
       this.titulo='Editar ';

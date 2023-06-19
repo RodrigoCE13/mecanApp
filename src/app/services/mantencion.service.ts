@@ -107,7 +107,7 @@ export class MantencionService {
   actualizarMantencion(id:string, data:any):Promise<any>{
     return this.firestore.collection('mantencion').doc(id).update(data);
   }
-  //traer solo mantenciones que tengan fehcaProxMantencion
+  //traer solo mantenciones que tengan fechaProxMantencion
 
 
   getMantencionesByFechaProx(): Observable<any> {

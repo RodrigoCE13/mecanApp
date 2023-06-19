@@ -16,22 +16,22 @@ export class VehiculoService {
     return this.firestore.collection('vehiculo').add(vehiculo);
   }
   //fk
-  //getMarcas(): Observable<any>{
-  //  return this.firestore.collection('marcas').snapshotChanges(); 
-  //}
   getMarcas(): Observable<any>{
-    return this.afAuth.authState.pipe(
-      filter(user=>!!user),
-      take(1),
-      switchMap(user=>{
-        const uid=user?.uid;
-        const queryFn:QueryFn=ref=>ref
-        .where('userId','==',uid)
-        .orderBy('fechaCreacion','asc');
-        return this.firestore.collection('marcas',queryFn).snapshotChanges();
-      })
-    )
+   return this.firestore.collection('marcas').snapshotChanges(); 
   }
+  // getMarcas(): Observable<any>{
+  //   return this.afAuth.authState.pipe(
+  //     filter(user=>!!user),
+  //     take(1),
+  //     switchMap(user=>{
+  //       const uid=user?.uid;
+  //       const queryFn:QueryFn=ref=>ref
+  //       .where('userId','==',uid)
+  //       .orderBy('fechaCreacion','asc');
+  //       return this.firestore.collection('marcas',queryFn).snapshotChanges();
+  //     })
+  //   )
+  // }
 
   getTipos(): Observable<any>{
     return this.firestore.collection('tipoVehiculo').snapshotChanges(); 
