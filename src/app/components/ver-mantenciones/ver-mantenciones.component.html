@@ -7,33 +7,36 @@
                     <h1 class="titulos">Lista de vehículos</h1>
                     <h4 class="mensajeTitulo mt-5" *ngIf="mantenciones.length == 0">No posee ninguna mantención</h4>
                     <div class="col mt-4">
-                        <table *ngIf="mantenciones.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th>Vehículo</th>
-                                    <th>Fecha</th>
-                                    <th>Costo</th>
-                                    <th>Encargado</th>
-                                    <th>Descripción</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let mantencion of mantenciones; let i = index">
-                                    <th scope="row">{{ i+1 }}</th>
-                                    <td>{{ getVehiculoPatente(mantencion.vehiculo) }}</td>
-                                    <td>{{ mantencion.fecha }}</td>
-                                    <td>${{ mantencion.costo }}</td>
-                                    <td>{{ getMecanicoNombre(mantencion.mecanico) }}</td>
-                                    <td>{{ mantencion.descripcion }}</td>
-                                    <td class="text-end">
-                                        <button [routerLink]="['/editar-mantencion/',mantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
-                                        <button (click)="eliminarMantencion(mantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+
+                            <table *ngIf="mantenciones.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th>Vehículo</th>
+                                        <th>Fecha</th>
+                                        <th>Costo</th>
+                                        <th>Encargado</th>
+                                        <th>Descripción</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mantencion of mantenciones; let i = index">
+                                        <th scope="row">{{ i+1 }}</th>
+                                        <td>{{ getVehiculoPatente(mantencion.vehiculo) }}</td>
+                                        <td>{{ mantencion.fecha }}</td>
+                                        <td>${{ mantencion.costo }}</td>
+                                        <td>{{ getMecanicoNombre(mantencion.mecanico) }}</td>
+                                        <td>{{ mantencion.descripcion }}</td>
+                                        <td class="text-end">
+                                            <button [routerLink]="['/editar-mantencion/',mantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                                            <button (click)="eliminarMantencion(mantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="text-end">
                             <button class="btnPrincipal p-2 shadow" routerLink="/crear-mantencion">Ingresar mantención</button>
                         </div>

@@ -10,25 +10,28 @@
 
             <h4 class="mensajeTitulo mt-5" *ngIf="tiposMantencion.length == 0">No hay datos para mostrar</h4>
 
-            <table *ngIf="tiposMantencion.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
-                <thead class="bg-dark text-white">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th class=""></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let tipoMantencion of tiposMantencion; let i = index">
-                        <th scope="row">{{ i+1 }}</th>
-                        <td>{{ tipoMantencion.nombre }}</td>
-                        <td class="text-end">
-                            <button [routerLink]="['/editar-tipo-mantencion/',tipoMantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
-                            <button (click)="eliminarTiposMantencion(tipoMantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table *ngIf="tiposMantencion.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th class=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tipoMantencion of tiposMantencion; let i = index">
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>{{ tipoMantencion.nombre }}</td>
+                            <td class="text-end">
+                                <button [routerLink]="['/editar-tipo-mantencion/',tipoMantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                                <button (click)="eliminarTiposMantencion(tipoMantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
             <div class="text-end">
                 <button class="btnPrincipal p-2 shadow" routerLink="/crear-tipo-mantencion">Agregar nuevo</button>
             </div>
