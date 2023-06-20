@@ -20,9 +20,9 @@ export class ListarVehiculosComponent implements OnInit {
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
-    this.getVehiculos();
     this.getMarcas();
     this.getTipos();
+    this.getVehiculos();
   }
   
 
@@ -68,8 +68,6 @@ export class ListarVehiculosComponent implements OnInit {
     const tipo = this.tipos.find(t => t.id === tipoId);
     return tipo ? tipo.nombre : '';
   }
-
-
 
   eliminarVehiculo(id:string){
     this._vehiculoServices.eliminarVehiculo(id).then(()=>{
