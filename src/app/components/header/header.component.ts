@@ -8,24 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  dataUser:any;
+ 
   isCollapsed : boolean = true;
+  userEmail: string='';
+
 
   constructor(private afAuth: AngularFireAuth,
     private router:Router) { }
 
   ngOnInit(): void {
-    //this.afAuth.currentUser.then((user)=>{//<-- Obtenemos el usuario actual
-    //  if(user && user.emailVerified){
-    //    this.dataUser=user; //<-- Si el usuario existe y el correo esta verificado lo asignamos a la variable dataUser
-    //  }else{
-    //    this.router.navigate(['/login']);
-    //  }
-    //})
+   this.afAuth.authState.subscribe((user) => {
+    if (user) {
+      const emailParts = user.email?.split('@');
+      this.userEmail = emailParts?.shift()??'';
+    } else {
+      this.userEmail = '';
+    }
+  });
   }
+
 
   logout(){
     this.afAuth.signOut().then(()=>this.router.navigate(['/login']));//<-- Cerramos sesion y redireccionamos al login
   }
+
   
 }

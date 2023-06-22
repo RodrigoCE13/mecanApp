@@ -1,37 +1,48 @@
 <body class="inicio">
     <app-header></app-header>
     <div>
-        <div class="m-5">
+        <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">{{titulo}}mecanico/taller
+                    <h1 class="titulos">{{titulo}}mecánico/taller
                         <app-spinner *ngIf="loading"></app-spinner>
                     </h1>
-                    
+
                 </div>
                 <div class="mt-4">
-                    
+
                     <form [formGroup]="createMecanico" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Nombre</label>
-                                <input class="form-control" formControlName="nombre">
-                                <span *ngIf="submitted && createMecanico.invalid" class="text-danger error-label">Debe ingresar un nombre</span>
+                                <!-- Se agrega validación maxLenght para Nombre [En la BD de 100 aca de 50]-->
+                                <label class="form-label titulos">Nombre *</label>
+                                <input class="form-control shadow" formControlName="nombre" maxlength="50">
+                                <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un nombre</span>
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">fono</label>
-                                <input class="form-control" formControlName="fono">
+                                <label class="form-label titulos">Tipo de mecánico *</label>
+                                <select class="form-select shadow" formControlName="tipoMecanico">
+                                    <option [value]="item" *ngFor="let item of tipo">{{ item }}</option>
+                                </select>
+                                <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe seleccionar un tipo</span>
                             </div>
                         </div>
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Direccion</label>
-                        <input class="form-control" formControlName="direccion">
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Tipo de mecanico</label>
-                        <select class="form-select" formControlName="tipoMecanico" >
-                            <option [value]="item" *ngFor="let item of tipo">{{ item }}</option>
-                        </select> 
+                        <!-- Se agrega validación maxLenght para Dirección [En la BD de 100 aca de 50]-->
+                        <label class="form-label mt-2 titulos">Dirección</label>
+                        <input class="form-control shadow" formControlName="direccion" maxlength="50">
+                        <div class="row">
+                            <!-- Se agrega validación maxLenght para fono -->
+                            <div class="col mt-2">
+                                <label class="form-label titulos">fono</label>
+                                <input class="form-control shadow" formControlName="fono" maxlength="11" minlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">numero incorrecto</span>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+
                         <div class="mt-4">
-                            <button class="btn me-2" type="submit" style="background: #F66B0E; color: #EFEFEF;">{{titulo}}</button>
-                            <button class="btn btn-outline-info" (click)="limpiarCampos()" >Limpiar</button>
+                            <button class="btnAdd me-2 p-2">{{titulo}}</button>
+                            <button class="btnPrincipal p-2" routerLink="/listar-mecanicos">Volver</button>
                         </div>
                     </form>
                 </div>

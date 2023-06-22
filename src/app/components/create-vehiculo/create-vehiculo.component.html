@@ -1,54 +1,78 @@
 <body class="inicio">
     <app-header></app-header>
     <div>
-        <div class="m-5">
+        <div class="mt-4 col-md-6 offset-md-3">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h1 class="text-white">Agregar un nuevo vehiculo</h1>
+                    <h1 class="titulos">{{titulo}}vehículo
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </h1>
                 </div>
                 <div class="mt-4">
-                    <form>
+                    <form [formGroup]="createVehiculo" (ngSubmit)="agregarEditar()">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Patente</label>
-                                <input class="form-control">
+                                <!-- Se agrega validación maxLenght para patente -->
+                                <label class="form-label titulos">Patente *</label>
+                                <input class="form-control shadow" formControlName="patente" maxlength="8">
+                                <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese la patente del vehiculo</span>
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Tipo</label>
-                                <select class="form-select">
-                                    <option selected>Seleccione un tipo</option>
-                                    <option>Camion</option>
-                                    <option>Bus</option>
-                                    <option>Furgon</option>
-                                    <option>Vehiculo</option>
+                                <label class="form-label titulos">Tipo *</label>
+                                <select class="form-select" formControlName="tipoVehiculo">
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</option>
                                   </select>
+                                <span *ngIf="submitted && createVehiculo.invalid" class="errorMensaje">Debe seleccionar un tipo</span>
                             </div>
                         </div>
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Marca</label>
-                        <select class="form-select">
-                            <option selected>Seleccione una marca</option>
-                            <option>Nissan</option>
-                            <option>Volvo</option>
-                            <option>Reanult</option>
-                          </select>
-                        <label class="form-label mt-2" style="color: #EFEFEF;">Modelo</label>
-                        <input class="form-control">
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label mt-2 titulos">Marca *</label>
+                                <select class="form-select shadow" formControlName="marca">
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>
+                                  </select>
+                                <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Debe seleccionar una marca</span>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="">
+                                    <label class="titulos">si no encuentra la marca, puede agregarla 
+                                        <a routerLink="/crear-marca" class="linkForm">haciendo click aquí</a></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Se agrega validación maxLenght para precio de Modelo-->
+                            <label class="form-label mt-2 titulos">Modelo *</label>
+                            <input class="form-control shadow" formControlName="modelo" maxlength="50">
+                            <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Ingrese el modelo del vehiculo</span>
+                        </div>
                         <div class="row mt-2">
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Precio de compra</label>
-                                <input class="form-control">
+                                <!-- Se agrega validación maxLenght para precio de compra [En la BD está de 10, acá de 9]-->
+                                <label class="form-label titulos">Precio de compra</label>
+                                <input class="form-control shadow" formControlName="precio" maxlength="9" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </div>
                             <div class="col">
-                                <label class="form-label" style="color: #EFEFEF;">Año</label>
-                                <input class="form-control">
+                                <!-- Se agrega validación maxLenght para año -->
+                                <label class="form-label titulos">Año</label>
+                                <input class="form-control shadow" formControlName="año" maxlength="4" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span *ngIf="submitted && createVehiculo.invalid" class="badge badge-danger">Debe ingresar un año válido</span>
                             </div>
                         </div>
+                        <div>
+                            <!-- Se agrega validación maxLenght para kilometraje [En la BD está de 10, acá de 6]-->
+                            <label class="form-label mt-2 titulos">Kilometraje</label>
+                            <input class="form-control shadow" formControlName="kilometraje" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                        </div>
+                        <div class="mt-4">
+                            <button class="btnAdd me-2 p-2">{{titulo}}</button>
+                            <button class="btnPrincipal p-2" routerLink="/listar-vehiculos">Volver</button> 
+                        </div>
+                        
                     </form>
                 </div>
-            </div>
-            <div class="mt-4">
-                <button class="btn me-2" style="background: #F66B0E; color: #EFEFEF;">Agregar</button>
-                <button class="btn btn-outline-info" >Limpiar</button>
             </div>
         </div>
     </div>

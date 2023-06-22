@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.afAuth.signInWithEmailAndPassword(email,password).then((user)=>{
       if(user.user?.emailVerified){
         this.router.navigate(['/dashboard']);
-        this.toastr.success('Sesión iniciada con éxito','Iniciando sesión');
+        this.toastr.success('Sesión iniciada con éxito','Iniciando sesión',{ positionClass: 'toast-bottom-right' });
         return;
       }else{
         this.router.navigate(['/verificar-correo']);

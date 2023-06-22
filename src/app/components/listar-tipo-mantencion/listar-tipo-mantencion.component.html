@@ -1,0 +1,40 @@
+<body class="inicio">
+    <app-header></app-header>
+    <div class="col-md-6 offset-md-3">
+        <div class="m-5">
+            <div class="row align-items-center mb-2">
+                <div class="col">
+                    <h1 class="titulos">Lista de tipos de mantención</h1>
+                </div>
+            </div>
+
+            <h4 class="mensajeTitulo mt-5" *ngIf="tiposMantencion.length == 0">No hay datos para mostrar</h4>
+
+            <div class="table-responsive">
+                <table *ngIf="tiposMantencion.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th class=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tipoMantencion of tiposMantencion; let i = index">
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>{{ tipoMantencion.nombre }}</td>
+                            <td class="text-end">
+                                <button [routerLink]="['/editar-tipo-mantencion/',tipoMantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                                <button (click)="eliminarTiposMantencion(tipoMantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="text-end">
+                <button class="btnPrincipal p-2 shadow" routerLink="/crear-tipo-mantencion">Agregar nuevo</button>
+            </div>
+        </div>
+    </div>
+</body>

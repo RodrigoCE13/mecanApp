@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MecanicoService } from '../../services/mecanico.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-create-mecanico',
@@ -18,6 +19,7 @@ export class CreateMecanicoComponent implements OnInit {
   tipo:string[]=['Interno','Externo','Taller'];
 
   constructor(private fb: FormBuilder,
+    private afAuth: AngularFireAuth,
     private _mecanicoService: MecanicoService,//<-- Agregamos el servicio (los servicios llevan el guion bajo)
     private router: Router,
     private toastr: ToastrService,
@@ -33,6 +35,7 @@ export class CreateMecanicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
     this.esEditar();
   }
 
@@ -59,11 +62,16 @@ export class CreateMecanicoComponent implements OnInit {
       fechaActualizacion: new Date(),
     }
     this.loading=true;
-    
-    this._mecanicoService.actualizarMecanico(id, mecanico).then(()=>{
-      this.loading=false;
-      this.toastr.info('El mecanico fue modificado con exito!', 'Mecanico modificado',{positionClass: 'toast-bottom-right'});
-      this.router.navigate(['/listar-mecanicos']);
+    this.afAuth.currentUser.then(user=>{
+      if(user){
+        mecanico.userId=user.uid;
+      }
+
+      this._mecanicoService.actualizarMecanico(id, mecanico).then(()=>{
+       this.loading=false;
+       this.toastr.info('El mecanico fue modificado con exito!', 'Mecanico modificado',{positionClass: 'toast-bottom-right'});
+       this.router.navigate(['/listar-mecanicos']);
+      })
     })
   }
 
@@ -77,6 +85,10 @@ export class CreateMecanicoComponent implements OnInit {
       tipoMecanico:this.createMecanico.value.tipoMecanico,
     }
     this.loading=true;
+    this.afAuth.currentUser.then(user=>{
+      if(user){
+        mecanico.userId=user.uid;
+      }
     this._mecanicoService.agregarMecanico(mecanico).then(()=>{//<-- Llamamos al metodo agregarMecanico del servicio y le pasamos el objeto mecanico
       console.log('Mecanico creado con exito');
       this.toastr.success('El mecanico fue registrado con exito!', 'Mecanico registrado',{positionClass: 'toast-bottom-right'});
@@ -85,6 +97,7 @@ export class CreateMecanicoComponent implements OnInit {
     }).catch(error=>{
       console.log(error);
       this.loading=false;
+    })
     })
   }
 

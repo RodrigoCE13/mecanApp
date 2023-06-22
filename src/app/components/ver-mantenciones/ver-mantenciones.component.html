@@ -1,30 +1,45 @@
 <body class="inicio">
     <app-header></app-header>
-    <div>
+    <div class="col-md-6 offset-md-3">
         <div class="m-5">
-            <div class="row align-items-center mb-2">
-                <div class="col">
-                    <h1 class="text-white">Mantenciones de: </h1>
-                </div>
-                <div class="mt-4 text-white">
-                    <h3>15/05/2022</h3>
-                    <h5>Tipo:</h5>
-                    <label>Cambio de aceite</label>
-                    <h5>Costo:</h5>
-                    <label>60000</label>
-                    <h5>Encargado:</h5>
-                    <label>Juan</label>
-                    <hr class="my-3">
-                </div>
-            </div>
             <div class="mt-4">
                 <div class="row">
-                    <div class="col">
-                        <button class="btn btn-outline-light me-2">Exportar</button>
-                        <button class="btn btn-outline-light me-2">Ver valor del vehiculo</button>
-                    </div>
-                    <div class="col text-white" style="text-align: end;">
-                        <h5>total: $60000</h5>
+                    <h1 class="titulos">Lista de mantenciones</h1>
+                    <h4 class="mensajeTitulo mt-5" *ngIf="mantenciones.length == 0">No posee ninguna mantención</h4>
+                    <div class="col mt-4">
+                        <div class="table-responsive">
+
+                            <table *ngIf="mantenciones.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th>Vehículo</th>
+                                        <th>Fecha</th>
+                                        <th>Costo</th>
+                                        <th>Encargado</th>
+                                        <th>Descripción</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mantencion of mantenciones; let i = index">
+                                        <th scope="row">{{ i+1 }}</th>
+                                        <td>{{ getVehiculoPatente(mantencion.vehiculo) }}</td>
+                                        <td>{{ mantencion.fecha }}</td>
+                                        <td>${{ mantencion.costo }}</td>
+                                        <td>{{ getMecanicoNombre(mantencion.mecanico) }}</td>
+                                        <td>{{ mantencion.descripcion }}</td>
+                                        <td class="text-end">
+                                            <button [routerLink]="['/editar-mantencion/',mantencion.id]" class="btn btn-primary me-2"><i class="fa-solid fa-pen"></i></button>
+                                            <button (click)="eliminarMantencion(mantencion.id)" class="btn btn-danger me-2"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-end">
+                            <button class="btnPrincipal p-2 shadow" routerLink="/crear-mantencion">Ingresar mantención</button>
+                        </div>
                     </div>
                 </div>
             </div>

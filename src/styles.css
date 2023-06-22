@@ -1,31 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
-html,body{
-    height: 100%;
+/* You can add global styles to this file, and also import other style files 
+
+#1f2152
+
+#1a1b3a
+
+#F66B0E
+*/
+
+html,
+body {
+    height: 100%
 }
-.wrapper{
-    background-color: #205375;
+
+.wrapper {
+    background-image: linear-gradient(to top, #1f2152, #3d4572, #5d6b92, #8392b1, #acbbd1);
     height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
 }
-.body{
+
+.body {
+    background-image: linear-gradient(to top, #1f2152, #3d4572, #5d6b92, #8392b1, #acbbd1);
     width: 100%;
     margin: auto;
     text-align: center;
 }
-.carga{
+
+.carga {
     color: #F66B0E;
 }
 
-.form-floating{
+.form-floating {
     text-align: start;
 }
 
-.error-label{
+.error-label {
     margin-left: 2%;
 }
 
-.inicio{
-    background-color: #205375;
+.inicio {
+    background-image: linear-gradient(to top, #e1e1e1, #d7d7db, #cdced5, #c1c5cf, #b5bdc9);
+}
+
+.titulos {
+    color: #1f2152;
+}
+
+.mensajeTitulo {
+    color: #585c72;
+}
+
+.btnPrincipal {
+    background-color: #1f2152;
+    color: #ffffff;
+    border-radius: 6px;
+    border: none;
+}
+
+.btnPrincipal:hover {
+    background-color: #1a1b3a;
+    color: #ffffff;
+}
+
+.btnAdd {
+    background-color: #F66B0E;
+    color: #ffffff;
+    border-radius: 6px;
+    border: none;
+}
+
+.btnAdd:hover {
+    background-color: #da5f0d;
+    color: #ffffff;
+}
+
+.badge-danger {
+    background-color: red;
+}
+
+.errorMensaje {
+    color: white;
+    background: rgb(163, 23, 23);
+    border-radius: 4px;
+    padding: 0 1%;
+}
+
+.okMensaje {
+    color: white;
+    background: rgb(23, 163, 65);
+    border-radius: 4px;
+    padding: 0 1%;
+}
+
+.linkForm {
+    color: #343688;
+}
+
+.linkForm:hover {
+    color: #1f1f44;
+}
+
+.container-fluid .row .contProxFecha {
+    background-color: #ffffff;
+}
+
+.nav-item {
+    padding: 0 10px;
+}
+
+.nav-item:hover,
+.nav-item .active {
+    cursor: pointer;
 }

@@ -1,41 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MarcaService } from '../../services/marca.service';
+import { TipoMantencionPrevService } from '../../services/tipo-mantencion-prev.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-listar-marcas',
-  templateUrl: './listar-marcas.component.html',
-  styleUrls: ['./listar-marcas.component.css']
+  selector: 'app-listar-tipo-mantencion',
+  templateUrl: './listar-tipo-mantencion.component.html',
+  styleUrls: ['./listar-tipo-mantencion.component.css']
 })
-export class ListarMarcasComponent implements OnInit {
-  marcas:any[]=[];
-  
+export class ListarTipoMantencionComponent implements OnInit {
+  tiposMantencion:any[]=[];
+
   constructor(private fb: FormBuilder,
-    private _marcaService: MarcaService,
+    private _tipoMantencionService: TipoMantencionPrevService,
     private router: Router,
     private toastr: ToastrService,
     private aRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getMarcas();
+    this.getTiposMantencion();
   }
-
-  getMarcas(){
-    this._marcaService.getMarcas().subscribe(data=>{
-      this.marcas=[];
+  getTiposMantencion(){
+    this._tipoMantencionService.getTipoMantenciones().subscribe(data=>{
+      this.tiposMantencion=[];
       data.forEach((element:any) => {
-        this.marcas.push({
+        this.tiposMantencion.push({
           id: element.payload.doc.id,
           ...element.payload.doc.data()
         })
       });
     });
   }
-
-  eliminarMarca(id: string) {
+  eliminarTiposMantencion(id: string) {
     Swal.fire({
       title: '¿Estás seguro?',
       text: '¡No podrás revertir esto!',
@@ -46,19 +44,20 @@ export class ListarMarcasComponent implements OnInit {
       confirmButtonText: 'Sí, eliminarlo'
     }).then((result) => {
       if (result.isConfirmed) {
-        this._marcaService.eliminarMarca(id).then(() => {
-          console.log('Marca eliminada con éxito');
-          this.toastr.success('¡La marca fue eliminada con éxito!', 'Marca eliminada', { positionClass: 'toast-bottom-right' });
+        this._tipoMantencionService.eliminarTipoMantencion(id).then(() => {
+          console.log('Tipo eliminado con éxito');
+          this.toastr.error('¡El tipo fue eliminado con éxito!', 'Tipo eliminado', { positionClass: 'toast-bottom-right' });
         }).catch(error => {
           console.log(error);
         });
         Swal.fire(
           '¡Eliminado!',
-          'La marca ha sido eliminada.',
+          'El tipo ha sido eliminado.',
           'success'
         );
       }
     });
   }
+  
 
 }
