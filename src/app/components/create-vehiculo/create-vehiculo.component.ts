@@ -115,7 +115,7 @@ export class CreateVehiculoComponent implements OnInit {
     };
   
     const yearActual = new Date().getFullYear();
-    const yearIngresado = parseInt(vehiculo.año);
+    const yearIngresado = parseInt(vehiculo.annio);
   
     if (yearIngresado > yearActual) {
       console.log('El año ingresado no puede ser mayor al año actual')

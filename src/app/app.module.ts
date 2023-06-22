@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 //modulos
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat'//<-- modulo de firebase
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFirestoreModule} from '@angular/fire/compat/firestore';//modulo para la base de datos
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';//modulo para la autenticacion
+
 
 //componentes
 import { AppComponent } from './app.component';
@@ -70,7 +71,8 @@ import { VerValorComponent } from './components/ver-valor/ver-valor.component';
     ToastrModule.forRoot(), // ToastrModule added
     AngularFirestoreModule,
     CollapseModule.forRoot(),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

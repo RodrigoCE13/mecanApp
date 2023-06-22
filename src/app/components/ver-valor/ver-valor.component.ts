@@ -55,7 +55,7 @@ export class VerValorComponent implements OnInit {
       this.loading=true;
       this._vehiculoService.getVehiculo(this.id).subscribe(data=>{
         this.loading=false;
-        console.log(data.payload.data()['precio']);
+        //console.log(data.payload.data()['precio']);
         this.precio = data.payload.data()['precio'];
         this.annio = data.payload.data()['annio'];
         this.modelo = data.payload.data()['modelo'];

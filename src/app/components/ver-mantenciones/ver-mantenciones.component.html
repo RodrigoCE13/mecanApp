@@ -7,6 +7,17 @@
                     <h1 class="titulos">Lista de vehículos</h1>
                     <h4 class="mensajeTitulo mt-5" *ngIf="mantenciones.length == 0">No posee ninguna mantención</h4>
                     <div class="col mt-4">
+                        <div class="row">
+                            <!-- <div class="col mt-4">
+                                <input type="date" name="fecha_ingreso" class="form-control" placeholder="Fecha de Inicio" required>
+                            </div>
+                            <div class="col mt-4">
+                                <input type="date" name="fechaFin" class="form-control" placeholder="Fecha Final" required>
+                            </div>
+                            <div class="col mt-4">
+                                <span class="btn" style="background-color:#1f2152; color: white;" id="filtro">Filtrar</span>
+                            </div> -->
+                        </div>
                         <div class="table-responsive">
 
                             <table *ngIf="mantenciones.length > 0" class="table mt-5 shadow rounded rounded-3 overflow-hidden" style="background: #EFEFEF;">

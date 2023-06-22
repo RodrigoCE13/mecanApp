@@ -118,8 +118,6 @@ export class CreateMecanicoComponent implements OnInit {
     }
   }
 
-
-
   //metodo para limpiar campos:
   limpiarCampos(){
     this.createMecanico.reset();
