@@ -16,22 +16,22 @@ export class VehiculoService {
     return this.firestore.collection('vehiculo').add(vehiculo);
   }
   //fk
-  getMarcas(): Observable<any>{
-   return this.firestore.collection('marcas').snapshotChanges(); 
-  }
   // getMarcas(): Observable<any>{
-  //   return this.afAuth.authState.pipe(
-  //     filter(user=>!!user),
-  //     take(1),
-  //     switchMap(user=>{
-  //       const uid=user?.uid;
-  //       const queryFn:QueryFn=ref=>ref
-  //       .where('userId','==',uid)
-  //       .orderBy('fechaCreacion','asc');
-  //       return this.firestore.collection('marcas',queryFn).snapshotChanges();
-  //     })
-  //   )
+  //  return this.firestore.collection('marcas').snapshotChanges(); 
   // }
+  getMarcas(): Observable<any>{
+    return this.afAuth.authState.pipe(
+      filter(user=>!!user),
+      take(1),
+      switchMap(user=>{
+        const uid=user?.uid;
+        const queryFn:QueryFn=ref=>ref
+        .where('userId','==',uid)
+        .orderBy('fechaCreacion','asc');
+        return this.firestore.collection('marcas',queryFn).snapshotChanges();
+      })
+    )
+  }
 
   getTipos(): Observable<any>{
     return this.firestore.collection('tipoVehiculo').snapshotChanges(); 
@@ -70,8 +70,6 @@ export class VehiculoService {
     )
   }
 
-
-
   //eliminar
   eliminarVehiculo(id:string):Promise<any>{
     return this.firestore.collection('vehiculo').doc(id).delete();
@@ -85,4 +83,27 @@ export class VehiculoService {
     return this.firestore.collection('vehiculo').doc(id).update(data);
   }
 
+  verificarPatenteExistente(patente: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const nombreUpperCase = patente.toUpperCase();
+      this.firestore
+        .collection('vehiculo', (ref) => ref.where('patente', '==', nombreUpperCase))
+        .get()
+        .toPromise()
+        .then((snapshot) => {
+          if (snapshot && snapshot.empty) {
+            // No se encontraron patentes con el mismo nombre
+            resolve(false);
+          } else {
+            // Se encontró al menos una patente con el mismo nombre
+            resolve(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
+  }
+  
 }

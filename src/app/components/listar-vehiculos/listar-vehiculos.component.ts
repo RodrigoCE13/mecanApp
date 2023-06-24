@@ -72,7 +72,7 @@ export class ListarVehiculosComponent implements OnInit {
   eliminarVehiculo(id:string){
     this._vehiculoServices.eliminarVehiculo(id).then(()=>{
       console.log('Vehiculo eliminado con exito');
-      this.toastr.error('El vehiculo fue eliminado con exito!', 'Vehiculo eliminado',{positionClass: 'toast-bottom-right'});
+      this.toastr.success('El vehiculo fue eliminado con exito!', 'Vehiculo eliminado',{positionClass: 'toast-top-right'});
     }).catch(error=>{
       console.log(error);
     })

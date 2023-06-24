@@ -46,7 +46,7 @@ export class CreateMantencionComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-top-right' });
     this.esEditar();
     this.getMarcas();
 
@@ -103,6 +103,39 @@ export class CreateMantencionComponent implements OnInit {
     this.mostrarTipoPrev = false;
   }
 
+  // agregarMantencion() {
+  //   const mantencion: any = {
+  //     descripcion: this.createMantencion.value.descripcion,
+  //     costo: this.createMantencion.value.costo,
+  //     fecha: this.createMantencion.value.fecha,
+  //     vehiculo: this.createMantencion.value.vehiculo,
+  //     mecanico: this.createMantencion.value.mecanico,
+  //     tipoMantencionPreventiva: this.createMantencion.value.tipoMantencionPreventiva,
+  //     tipoMantencionLegal: this.createMantencion.value.tipoMantencionLegal,
+  //     fechaProxMantencion: this.createMantencion.value.fechaProxMantencion,
+  //     fechaCreacion: new Date(),
+  //     fechaActualizacion: new Date(),
+  //   };
+    
+  
+  //   this.loading = true;
+  
+  //   this.afAuth.currentUser.then(user => {
+  //     if (user) {
+  //       mantencion.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
+  //     }
+  
+  //     this._mantencionService.agregarMantencion(mantencion).then(() => {
+  //       console.log('Mantencion creado con exito');
+  //       this.toastr.success('La mantencion fue registrada con exito!', 'mantencion registrada', { positionClass: 'toast-top-right' });
+  //       this.loading = false;
+  //       this.router.navigate(['/mantenciones']);
+  //     }).catch(error => {
+  //       console.log(error);
+  //       this.loading = false;
+  //     });
+  //   });
+  // }
   agregarMantencion() {
     const mantencion: any = {
       descripcion: this.createMantencion.value.descripcion,
@@ -117,16 +150,39 @@ export class CreateMantencionComponent implements OnInit {
       fechaActualizacion: new Date(),
     };
   
+    const fechaActual = new Date();
+    const fechaIngresada = new Date(mantencion.fecha);
+    const fechaProxMantencion = new Date(mantencion.fechaProxMantencion);
+  
+    // Se obtienen los años, meses y días de las fechas
+    const yearIngresado = fechaIngresada.getFullYear();
+    const monthIngresado = fechaIngresada.getMonth();
+    const dayIngresado = fechaIngresada.getDate();
+    const yearActual = fechaActual.getFullYear();
+    const monthActual = fechaActual.getMonth();
+    const dayActual = fechaActual.getDate();
+    const yearProxMantencion = fechaProxMantencion.getFullYear();
+    const monthProxMantencion = fechaProxMantencion.getMonth();
+    const dayProxMantencion = fechaProxMantencion.getDate();
+  
+    if (yearIngresado > yearActual || (yearIngresado === yearActual && monthIngresado > monthActual) || (yearIngresado === yearActual && monthIngresado === monthActual && dayIngresado > dayActual)) {
+      this.toastr.error('No se permite guardar mantenciones futuras', 'Error', { positionClass: 'toast-top-right' });
+      return;
+    }
+  
+    if (yearProxMantencion < yearActual || (yearProxMantencion === yearActual && monthProxMantencion < monthActual) || (yearProxMantencion === yearActual && monthProxMantencion === monthActual && dayProxMantencion < dayActual)) {
+      this.toastr.error('La fecha de próxima mantención debe ser mayor a la fecha actual', 'Error', { positionClass: 'toast-top-right' });
+      return;
+    }
     this.loading = true;
   
     this.afAuth.currentUser.then(user => {
       if (user) {
         mantencion.userId = user.uid; // Agrega el ID del usuario al objeto vehiculo
       }
-  
       this._mantencionService.agregarMantencion(mantencion).then(() => {
-        console.log('Mantencion creado con exito');
-        this.toastr.success('La mantencion fue registrada con exito!', 'mantencion registrada', { positionClass: 'toast-bottom-right' });
+        console.log('Mantencion creada con éxito');
+        this.toastr.success('La mantencion fue registrada exitosamente!', 'Mantencion Registrada', { positionClass: 'toast-top-right' });
         this.loading = false;
         this.router.navigate(['/mantenciones']);
       }).catch(error => {
@@ -135,7 +191,7 @@ export class CreateMantencionComponent implements OnInit {
       });
     });
   }
-
+  
   mostrarProximaFecha() {
     this.mostrarProxFecha = !this.mostrarProxFecha;
   }
@@ -175,7 +231,7 @@ export class CreateMantencionComponent implements OnInit {
   
       this._mantencionService.actualizarMantencion(id, mantencion).then(() => {
         this.loading = false;
-        this.toastr.info('La mantencion fue modificada con exito!', 'Mantencion modificada', { positionClass: 'toast-bottom-right' });
+        this.toastr.info('La mantencion fue modificada con exito!', 'Mantencion modificada', { positionClass: 'toast-top-right' });
         this.router.navigate(['/mantenciones']);
       });
     });

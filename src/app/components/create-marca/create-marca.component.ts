@@ -46,9 +46,7 @@ export class CreateMarcaComponent implements OnInit {
     }
   }
 
-  
   editarMarca( id:string ){
-    
     const marca:any={//<-- Creamos un objeto con los datos del formulario
       nombre: this.createMarca.value.nombre,
       fechaActualizacion: new Date(),
@@ -94,12 +92,11 @@ export class CreateMarcaComponent implements OnInit {
   // }
   agregarMarca() {
     const nombreMarca = this.createMarca.value.nombre.toLowerCase();
-  
     // Realizar la validación
     this._marcaService.verificarExistenciaMarca(nombreMarca).then((existe) => {
       if (existe) {
         // La marca ya existe
-        this.toastr.error('Ya existe una marca con ese nombre', 'Error', { positionClass: 'toast-bottom-right' });
+        this.toastr.error('Ya existe una marca con ese nombre', 'Error', { positionClass: 'toast-top-right' });
       } else {
         // La marca no existe, se puede guardar
         const marca: any = {
@@ -114,11 +111,10 @@ export class CreateMarcaComponent implements OnInit {
           if (user) {
             marca.userId = user.uid;
           }
-  
           this._marcaService.agregarMarca(marca).then(() => {
             console.log('Marca creada con éxito');
             this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada', {
-              positionClass: 'toast-bottom-right',
+              positionClass: 'toast-top-right',
             });
             this.loading = false;
             this.router.navigate(['/listar-marcas']);

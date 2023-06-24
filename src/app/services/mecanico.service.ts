@@ -44,4 +44,38 @@ export class MecanicoService {
     actualizarMecanico(id:string, data:any):Promise<any>{
       return this.firestore.collection('mecanicos').doc(id).update(data);//<-- Actualizamos un mecanico de la coleccion mecanicos de la base de datos
     }
-}
+
+    verificarExistenciaMecanico(nombre: string): Promise<boolean> {
+      const nombreLowerCase = nombre.toLowerCase(); // Convertir el nombre ingresado a minúsculas
+    
+      return new Promise<boolean>((resolve, reject) => {
+        this.afAuth.authState.pipe(
+          filter(user => !!user),
+          take(1),
+          switchMap(user => {
+            const uid = user?.uid;
+            const queryFn: QueryFn = ref => ref
+              .where('userId', '==', uid)
+              .where('nombre', '==', nombreLowerCase); // Agregar condición para filtrar por nombre
+            return this.firestore.collection('mecanicos', queryFn).valueChanges({ idField: 'id' }).pipe(take(1));
+          })
+        ).toPromise()
+        .then((mecanicos) => {
+          if (mecanicos && mecanicos.length > 0) {
+            // Se encontró al menos un mecánico con el mismo nombre
+            resolve(true);
+          } else {
+            // No se encontraron mecánicos con el mismo nombre
+            resolve(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+      });
+    }
+    
+  }
+
+

@@ -33,7 +33,7 @@
                         <div class="row">
                             <!-- Se agrega validación maxLenght para fono -->
                             <div class="col mt-2">
-                                <label class="form-label titulos">fono</label>
+                                <label class="form-label titulos">Fono</label>
                                 <input class="form-control shadow" formControlName="fono" maxlength="12" minlength="11" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                 <span *ngIf="submitted && createMecanico.invalid" class="badge badge-danger">Debe ingresar un número válido</span>
                             </div>

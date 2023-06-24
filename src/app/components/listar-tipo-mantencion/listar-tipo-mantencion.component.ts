@@ -35,7 +35,7 @@ export class ListarTipoMantencionComponent implements OnInit {
   eliminarTiposMantencion(id:string){
     this._tipoMantencionService.eliminarTipoMantencion(id).then(()=>{
       console.log('Tipo eliminada con exito');
-      this.toastr.error('El tipo fue eliminado con exito!', 'Tipo eliminado',{positionClass: 'toast-bottom-right'});
+      this.toastr.success('El tipo fue eliminado con exito!', 'Tipo eliminado',{positionClass: 'toast-top-right'});
     }).catch(error=>{
       console.log(error);
     })

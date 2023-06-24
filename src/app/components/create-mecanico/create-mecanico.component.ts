@@ -35,7 +35,7 @@ export class CreateMecanicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-bottom-right' });
+    this.toastr.info('Los campos que contengan * son obligatorios', 'Importante', { positionClass: 'toast-top-right' });
     this.esEditar();
   }
 
@@ -69,37 +69,76 @@ export class CreateMecanicoComponent implements OnInit {
 
       this._mecanicoService.actualizarMecanico(id, mecanico).then(()=>{
        this.loading=false;
-       this.toastr.info('El mecanico fue modificado con exito!', 'Mecanico modificado',{positionClass: 'toast-bottom-right'});
+       this.toastr.info('El mecanico fue modificado con exito!', 'Mecanico modificado',{positionClass: 'toast-top-right'});
        this.router.navigate(['/listar-mecanicos']);
       })
     })
   }
 
-  agregarMecanico(){
-    const mecanico:any={//<-- Creamos un objeto con los datos del formulario
-      nombre: this.createMecanico.value.nombre,
+  // agregarMecanico(){
+  //   const mecanico:any={//<-- Creamos un objeto con los datos del formulario
+  //     nombre: this.createMecanico.value.nombre,
+  //     fono: this.createMecanico.value.fono,
+  //     direccion: this.createMecanico.value.direccion,
+  //     fechaCreacion: new Date(),//<-- Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
+  //     fechaActualizacion: new Date(),
+  //     tipoMecanico:this.createMecanico.value.tipoMecanico,
+  //   }
+  //   this.loading=true;
+  //   this.afAuth.currentUser.then(user=>{
+  //     if(user){
+  //       mecanico.userId=user.uid;
+  //     }
+  //   this._mecanicoService.agregarMecanico(mecanico).then(()=>{//<-- Llamamos al metodo agregarMecanico del servicio y le pasamos el objeto mecanico
+  //     console.log('Mecanico creado con exito');
+  //     this.toastr.success('El mecanico fue registrado con exito!', 'Mecanico registrado',{positionClass: 'toast-top-right'});
+  //     this.loading=false;
+  //     this.router.navigate(['/listar-mecanicos']);
+  //   }).catch(error=>{
+  //     console.log(error);
+  //     this.loading=false;
+  //   })
+  //   })
+  // }
+  agregarMecanico() {
+    const mecanico: any = { // Creamos un objeto con los datos del formulario
+      nombre: this.createMecanico.value.nombre.toLowerCase(),
       fono: this.createMecanico.value.fono,
       direccion: this.createMecanico.value.direccion,
-      fechaCreacion: new Date(),//<-- Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
+      fechaCreacion: new Date(), // Agregamos la fecha de creacion y actualizacion para llevar un control de los datos
       fechaActualizacion: new Date(),
-      tipoMecanico:this.createMecanico.value.tipoMecanico,
-    }
-    this.loading=true;
-    this.afAuth.currentUser.then(user=>{
-      if(user){
-        mecanico.userId=user.uid;
+      tipoMecanico: this.createMecanico.value.tipoMecanico,
+    };
+    this.loading = true;
+    this.afAuth.currentUser.then(user => {
+      if (user) {
+        mecanico.userId = user.uid;
       }
-    this._mecanicoService.agregarMecanico(mecanico).then(()=>{//<-- Llamamos al metodo agregarMecanico del servicio y le pasamos el objeto mecanico
-      console.log('Mecanico creado con exito');
-      this.toastr.success('El mecanico fue registrado con exito!', 'Mecanico registrado',{positionClass: 'toast-bottom-right'});
-      this.loading=false;
-      this.router.navigate(['/listar-mecanicos']);
-    }).catch(error=>{
-      console.log(error);
-      this.loading=false;
-    })
-    })
+      // Validar si el nombre del mecánico ya existe
+      this._mecanicoService.verificarExistenciaMecanico(mecanico.nombre).then(existingMecanico => {
+        if (existingMecanico) {
+          // El nombre del mecánico ya existe
+          this.toastr.error('El nombre del mecánico ya está registrado', 'Error de registro', { positionClass: 'toast-top-right' });
+          this.loading = false;
+        } else {
+          // El nombre del mecánico no existe, guardarlo
+          this._mecanicoService.agregarMecanico(mecanico).then(() => {
+            console.log('Mecanico creado con exito');
+            this.toastr.success('El mecánico fue registrado con éxito!', 'Mecánico registrado', { positionClass: 'toast-top-right' });
+            this.loading = false;
+            this.router.navigate(['/listar-mecanicos']);
+          }).catch(error => {
+            console.log(error);
+            this.loading = false;
+          });
+        }
+      }).catch(error => {
+        console.log(error);
+        this.loading = false;
+      });
+    });
   }
+  
 
   esEditar(){
     if(this.id !== null){
